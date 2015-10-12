@@ -11,18 +11,16 @@ public enum Format
 public class IO_Format : MonoBehaviour {
 
     public Format format;
-
-    private DataTypeFormat datatypeformat;
     public Object Data;
 
 	// Use this for initialization
 	void Start () {
-        datatypeformat = new DataTypeFormat();
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
+
 	}
 
     public string GetData()
@@ -49,6 +47,7 @@ public class IO_Format : MonoBehaviour {
 
     public bool setData(string _Data)
     {
+
         if (format == null)
         {
             Debug.LogError("NullPointer : format");
@@ -58,14 +57,14 @@ public class IO_Format : MonoBehaviour {
         switch (format)
         {
             case Format.SIMPLE:
-                SimpleData simpledata  = (SimpleData) new SimpleDataPacker().Unpack(_Data);
-                ((SimpleData)Data).Value = simpledata.Value;
+                SimpleData simpledata  = (SimpleData) new SimpleDataPacker().Unpack(_Data, Data);
                 return true;
+                break;
 
             case Format.STRING:
-                StringData stringdata = (StringData)new StringDataPacker().Unpack(_Data);
-                ((StringData)Data).Value = stringdata.Value;
+                StringData stringdata = (StringData)new StringDataPacker().Unpack(_Data, Data);
                 return true;
+                break;
 
             default:
                 return false;

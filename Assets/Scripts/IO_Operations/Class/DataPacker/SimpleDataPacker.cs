@@ -4,12 +4,16 @@ using System.Collections.Generic;
 public class SimpleDataPacker : DataPacker
 {
 
-    public override object Unpack(object ob)
+    public override object Unpack(object ob, object Data)
     {
         if (ob is string == false) throw new System.ArgumentException("Invalid Type");
 
         object obj = new SimpleData();
-        ((SimpleData)obj).Value = Convert.ToInt32((string)ob);
+        ((SimpleData)obj).Value = float.Parse((string)ob);
+        ((SimpleData)Data).Value = ((SimpleData)obj).Value;
+
+        ((SimpleData)Data).Value = ((SimpleData)Data).Value;
+
         return obj;
     }
 

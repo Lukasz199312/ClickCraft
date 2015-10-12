@@ -11,6 +11,7 @@ public class IO_LoadBehavior : I_Observer_Behavior
         IO_Format Format = (IO_Format)arg;
 
         String LoadedDataString = IO_Basic.Load(Format.gameObject.name);
+
         if (LoadedDataString == null) IO_Basic.Save(Format.gameObject.name, Format.GetData());
         else Format.setData(LoadedDataString);
 

@@ -10,7 +10,6 @@ public class IO_Operations : MonoBehaviour , I_Subject{
 	void Start () {
 
         IEnumerator<I_Observer> iter = Observers.GetEnumerator();
-
         while(iter.MoveNext())
         {
             I_Observer ob = iter.Current;

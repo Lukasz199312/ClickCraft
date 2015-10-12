@@ -1,15 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class StringDataPacker : DataPacker
 {
 
-    public override object Unpack(object ob)
+    public override object Unpack(object ob, object Data)
     {
         if (ob is string == false) throw new System.ArgumentException("Invalid Type");
 
         object obj = new StringData();
-        ((StringData)obj).Value = (string)ob;
+        ((StringData)Data).Value = (string)ob.ToString();
         return obj;
     }
 
