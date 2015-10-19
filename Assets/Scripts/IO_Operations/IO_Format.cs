@@ -4,7 +4,9 @@ using System.Collections;
 public enum Format
 {
     SIMPLE,
-    STRING
+    STRING,
+    BUILDING,
+
 
 };
 
@@ -38,6 +40,8 @@ public class IO_Format : MonoBehaviour {
 
             case Format.STRING:
                 return new StringDataPacker().Pack(Data);
+            case Format.BUILDING:
+                return new BuildingDataPacker().Pack(Data);
 
             default:
                 Debug.LogError("Not Know Value");
@@ -63,6 +67,11 @@ public class IO_Format : MonoBehaviour {
 
             case Format.STRING:
                 StringData stringdata = (StringData)new StringDataPacker().Unpack(_Data, Data);
+                return true;
+                break;
+
+            case Format.BUILDING:
+                new BuildingDataPacker().Unpack(_Data, Data);
                 return true;
                 break;
 

@@ -8,12 +8,15 @@ public class IO_Observer : MonoBehaviour, I_Observer {
     private I_Observer_Behavior Behavior;
 
     void Awake() {
+        IO.Add(this);
 
+        IO_Format format = gameobject().GetComponent<IO_Format>();
+        ChangeBehavior(IO, new IO_LoadBehavior()).update(format);
     }
 
 	// Use this for initialization
 	void Start () {
-        IO.Add(this);
+      
 	}
 	
 	// Update is called once per frame
@@ -21,7 +24,8 @@ public class IO_Observer : MonoBehaviour, I_Observer {
 	
 	}
 
-    I_Observer_Behavior I_Observer.ChangeBehavior(I_Subject subject, I_Observer_Behavior Behavior)
+
+    public I_Observer_Behavior ChangeBehavior(I_Subject subject, I_Observer_Behavior Behavior)
     {
         IO = (IO_Operations)subject;
         this.Behavior = Behavior;
@@ -29,9 +33,11 @@ public class IO_Observer : MonoBehaviour, I_Observer {
         return this.Behavior;
     }
 
-
     public GameObject gameobject()
     {
         return gameObject;
+
     }
+
+
 }

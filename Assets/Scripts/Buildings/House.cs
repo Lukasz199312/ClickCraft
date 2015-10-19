@@ -1,11 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class test : MonoBehaviour {
-
-    public int A = 10;
-    public string Name;
-    public string opis = "Aaaaaa";
+public class House : Building {
 
 	// Use this for initialization
 	void Start () {

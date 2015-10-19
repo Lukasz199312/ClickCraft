@@ -8,16 +8,16 @@ public class IO_Operations : MonoBehaviour , I_Subject{
 
 	// Use this for initialization
 	void Start () {
-
-        IEnumerator<I_Observer> iter = Observers.GetEnumerator();
-        while(iter.MoveNext())
-        {
-            I_Observer ob = iter.Current;
-            IO_Format format = ob.gameobject().GetComponent<IO_Format>();
+        Debug.Log(Observers.Count);
+        //IEnumerator<I_Observer> iter = Observers.GetEnumerator();
+        //while(iter.MoveNext())
+        //{
+        //    I_Observer ob = iter.Current;
+        //    IO_Format format = ob.gameobject().GetComponent<IO_Format>();
  
-            ob.ChangeBehavior(this, new IO_LoadBehavior()).update(format);
+        //    ob.ChangeBehavior(this, new IO_LoadBehavior()).update(format);
 
-        }
+        //}
 
 	}
 	
@@ -49,4 +49,5 @@ public class IO_Operations : MonoBehaviour , I_Subject{
     {
         throw new System.NotImplementedException();
     }
+
 }
