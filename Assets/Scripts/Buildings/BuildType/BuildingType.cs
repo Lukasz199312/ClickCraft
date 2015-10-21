@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-
+/// <summary>
+/// Class describing group of buildings, Storing all group members
+/// </summary>
 public abstract class BuildingType : MonoBehaviour {
 
     public List<Building> Builds;

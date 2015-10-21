@@ -1,15 +1,18 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/// <summary>
+/// Super Observer class
+/// </summary>
 public class Observe : MonoBehaviour, I_Observer {
 
-    public Subject IO;
+    public Subject subject;
 
-    private I_Observer_Behavior Behavior;
+    protected I_Observer_Behavior Behavior;
 
 	// Use this for initialization
-	void Start () {
-	
+	void Awake () {
+        subject.Add(this);
 	}
 	
 	// Update is called once per frame
@@ -17,9 +20,15 @@ public class Observe : MonoBehaviour, I_Observer {
 	
 	}
 
+    /// <summary>
+    /// This Function Change Behaviory (Change Functionality)
+    /// </summary>
+    /// <param name="subject">following class</param>
+    /// <param name="Behavior">Function used when subject notify all Observe. Implement I_Observer Interface.</param>
+    /// <returns>newly set behavior</returns>
     public I_Observer_Behavior ChangeBehavior(I_Subject subject, I_Observer_Behavior Behavior)
     {
-        IO = (IO_Operations)subject;
+        subject = (IO_Operations)subject;
         this.Behavior = Behavior;
 
         return this.Behavior;

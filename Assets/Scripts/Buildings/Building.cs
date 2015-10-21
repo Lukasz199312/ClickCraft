@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+/// <summary>
+///SuperClass representation Building 
+/// </summary>
 public abstract class Building : MonoBehaviour {
 
 	// Use this for initialization

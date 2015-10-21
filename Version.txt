@@ -1,9 +1,14 @@
-****Modules INFO****
-Build : v 1.00.000
-IO Operations : v 1.00.001
+							    ****Game INFO****
+Game Version: 1.00.001
+	* Change Observe Module
+
+Game Version: 1.00.000
 
 
 
+
+
+							***Module Change Log***
 
 Build Change Log:
 	Version v 1.00.000
@@ -23,3 +28,13 @@ IO Operations Change Log:
 	* Added SimpleData, StringData
 	
 
+Observe Change Log:
+
+	Version v 1.00.002
+	*Added SuperClass 
+
+	Version v 1.00.001
+	*Added I_Observe and I_subject
+
+	Version v 1.00.000
+	*Added I_Observe and I_subject
