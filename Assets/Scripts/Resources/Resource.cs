@@ -5,6 +5,7 @@ using System.Collections;
 public class Resource : MonoBehaviour {
 
     public SimpleData Value;
+    public float RequiredHitPoints;
     protected string text;
 
 	// Use this for initialization

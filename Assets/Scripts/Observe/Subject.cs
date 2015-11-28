@@ -23,11 +23,28 @@ public class Subject : MonoBehaviour, I_Subject {
 
     public void Remove(I_Observer ob)
     {
-        throw new System.NotImplementedException();
+        Observers.Remove(ob);
     }
 
-    public void AdviseAll(I_Observer ob)
+    public virtual void AdviseAll(I_Observer_Behavior Behavior)
     {
-        throw new System.NotImplementedException();
+        IEnumerator<I_Observer> iter = Observers.GetEnumerator();
+
+        while( iter.MoveNext() )
+        {
+            I_Observer observer = iter.Current;
+            observer.ChangeBehavior(this, Behavior).update(observer);
+        }
+    }
+
+    public virtual void AdviseAll(I_Observer_Behavior Behavior, object arg)
+    {
+        IEnumerator<I_Observer> iter = Observers.GetEnumerator();
+
+        while (iter.MoveNext())
+        {
+            I_Observer observer = iter.Current;
+            observer.ChangeBehavior(this, Behavior).update(arg);
+        }
     }
 }

@@ -28,7 +28,7 @@ public class Observe : MonoBehaviour, I_Observer {
     /// <returns>newly set behavior</returns>
     public I_Observer_Behavior ChangeBehavior(I_Subject subject, I_Observer_Behavior Behavior)
     {
-        subject = (IO_Operations)subject;
+        this.subject = (Subject)subject;
         this.Behavior = Behavior;
 
         return this.Behavior;

@@ -10,7 +10,7 @@ public abstract class BuildingType : MonoBehaviour {
     public Building _Buildnig;
 
     private string BuildTypeName = "";
-    private List<Upgrade> UpgradesList;
+    //private List<Upgrade> UpgradesList;
 
 	// Use this for initialization
 	void Start () {
