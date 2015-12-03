@@ -12,41 +12,47 @@ public class TouchController : MonoBehaviour {
 	void Start () {
         FirstTouch = new Vector3();
         Distance = new Vector3();
+        Distance = Vector3.zero;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 	    foreach(Touch touch in Input.touches)
         {
-            Debug.Log("Phase: " + touch.phase);
-            
-            if(touch.phase == TouchPhase.Began)
-            {
-                FirstTouch = touch.position;
-            }
-            else if (touch.phase == TouchPhase.Moved)
-            {
-                if (FirstTouch.x < touch.position.x)
-                {
-                    transform.position = new Vector3(transform.position.x - MoveSpeed, transform.position.y, transform.position.z);
-                }
-                else if (FirstTouch.x > touch.position.x)
-                {
-                    transform.position = new Vector3(transform.position.x + MoveSpeed, transform.position.y, transform.position.z);
-                }
-
-                if(FirstTouch.y < touch.position.y)
-                {
-                    transform.position = new Vector3(transform.position.x, transform.position.y - MoveSpeed, transform.position.z);
-                }
-                else if (FirstTouch.y > touch.position.y)
-                {
-                    transform.position = new Vector3(transform.position.x, transform.position.y + MoveSpeed, transform.position.z);
-                }
-                FirstTouch = touch.position;
-                
-            }
+            if (Input.touchCount > 1) return;
+            PhaseAction(touch);
         }
+
+        if (Distance.sqrMagnitude == 0) return;
+        MoveCamera();
+
 	}
 
+    private void PhaseAction(Touch touch)
+    {
+        if (touch.phase == TouchPhase.Began)
+        {
+            FirstTouch = Camera.main.ScreenToWorldPoint(touch.position);
+        }
+        else if (touch.phase == TouchPhase.Moved)
+        {
+            Distance = Camera.main.ScreenToWorldPoint(touch.position); ;
+        }
+        else if (touch.phase == TouchPhase.Ended) Distance = Vector3.zero;
+        else if (touch.phase == TouchPhase.Stationary) Distance = Vector3.zero;
+    }
+
+    private void MoveCamera()
+    {
+        Vector3 Result = new Vector3();
+        Vector3 Point = Vector3.MoveTowards(FirstTouch, Distance, MoveSpeed);
+
+        Result = FirstTouch - Point;
+
+        Camera.main.transform.position = new Vector3(Camera.main.transform.position.x + Result.x,
+                                                     Camera.main.transform.position.y + Result.y,
+                                                     Camera.main.transform.position.z);
+
+        if (Point.sqrMagnitude == 0) Distance = Vector3.zero;
+    }
 }
