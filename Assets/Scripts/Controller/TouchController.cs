@@ -4,6 +4,7 @@ using System.Collections;
 public class TouchController : MonoBehaviour {
 
     public float MoveSpeed;
+    public GridManager Grid;
 
     private Vector3 FirstTouch;
     private Vector3 Distance;
@@ -24,8 +25,9 @@ public class TouchController : MonoBehaviour {
         }
 
         if (Distance.sqrMagnitude == 0) return;
+        if (Input.touchCount == 0) return;
         MoveCamera();
-
+        Grid.DetechTouchPositionOnGrid(FirstTouch);
 	}
 
     private void PhaseAction(Touch touch)
@@ -54,5 +56,10 @@ public class TouchController : MonoBehaviour {
                                                      Camera.main.transform.position.z);
 
         if (Point.sqrMagnitude == 0) Distance = Vector3.zero;
+    }
+
+    public Vector3 GetTouch()
+    {
+        return FirstTouch;
     }
 }

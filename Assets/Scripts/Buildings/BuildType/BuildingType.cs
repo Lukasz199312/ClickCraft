@@ -32,4 +32,21 @@ public abstract class BuildingType : MonoBehaviour {
         newBuilding.gameObject.name = this.gameObject.name + " - " + Builds.Count;
         newBuilding.gameObject.SetActive(true);
     }
+
+    public void AddBuild(Vector3 Position)
+    {
+        // DO WYDZIELENIA DO OSOBNEK KLASY
+        Building newBuilding = (Building)Instantiate(this._Buildnig);
+        Builds.Add(newBuilding);
+        newBuilding.gameObject.transform.parent = gameObject.transform;
+
+        newBuilding.gameObject.name = this.gameObject.name + " - " + Builds.Count;
+        newBuilding.gameObject.SetActive(true);
+        newBuilding.transform.position = new Vector3(Position.x, Position.y, Position.z);
+    }
+
+    private void CreateBuild()
+    {
+
+    }
 }
