@@ -9,6 +9,11 @@ public class GridElement
     private Vector2 D;
 
     private float z;
+    private SpriteRenderer TextureObject;
+    private Transform TextureTransform;
+    private bool Free = true;
+    private int col;
+    private int row;
 
     public void GridInitialize(Vector2 A, Vector2 B, Vector2 C, Vector2 D, float z)
     {
@@ -86,4 +91,70 @@ public class GridElement
         return z;
     }
 
+    public bool isFree()
+    {
+        return Free;
+    }
+
+    public void setTexture(Transform Texture)
+    {
+        TextureTransform = Texture;
+        this.TextureObject = Texture.GetComponent<SpriteRenderer>();
+        TexturePositionSet();
+    }
+
+    public void ToggleOn()
+    {
+        TextureTransform.gameObject.SetActive(true);
+        Free = true;
+    }
+
+    public void ToggleOff()
+    {
+        TextureTransform.gameObject.SetActive(false);
+        Free = false;
+    }
+    private void TexturePositionSet()
+    {
+
+        TextureTransform.position = new Vector3(getA().x + (getB().x - getA().x),
+                                                    getB().y - (getB().y - getA().y),
+                                                   TextureTransform.position.z ); // Gdyby nie nie odpalalo
+        ToggleOff();
+    }
+
+    public Vector3 getTexturePosition()
+    {
+        return TextureTransform.position;
+    }
+
+    public int getCol()
+    {
+        return col;
+    }
+
+    public int getRow()
+    {
+        return row;
+    }
+
+    public void setCol(int col)
+    {
+        this.col = col;
+    }
+
+    public void setRow(int row)
+    {
+        this.row = row;
+    }
+
+    public void setGreen(Color32 color)
+    {
+        TextureObject.color = color;
+    }
+
+    public void setRed(Color32 color)
+    {
+        TextureObject.color = color;
+    }
 }

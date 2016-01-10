@@ -26,7 +26,9 @@ public class BuildingDataPacker : DataPacker {
         BuildingData _BuildingData = (BuildingData)ob;
 
         string strData;
-        strData = _BuildingData._Building.Build_Statistic.ProgressProduction.ToString();
+        strData = _BuildingData._Building.Build_Statistic.ProgressProduction.ToString() + ":";
+
+        strData = strData + _BuildingData.PlaceToGrid.Col + ":" + _BuildingData.PlaceToGrid.Row;
 
         strData = strData + getStringDataToSave(_BuildingData._UpgradeSystem.Upgrades);
         strData = strData + getStringDataToSave(_BuildingData._UpgradeSystem.PercentUpgrades) + ":";
@@ -69,7 +71,13 @@ public class BuildingDataPacker : DataPacker {
 
     private void InitializeLoadedData(BuildingData _Building, List<string>ChainData)
     {
-        int index = 1;
+        int index = 3;
+
+        _Building._Building.Build_Statistic.ProgressProduction = float.Parse(ChainData[0]);
+        _Building.PlaceToGrid.Col = int.Parse(ChainData[1]);
+        _Building.PlaceToGrid.Row = int.Parse(ChainData[2]);
+
+
         for (int i = 0; i < _Building._UpgradeSystem.Upgrades.Count; i++, index++)
         {
             _Building._UpgradeSystem.Upgrades[i].UpgradeLevel = Convert.ToInt32(ChainData[index]);

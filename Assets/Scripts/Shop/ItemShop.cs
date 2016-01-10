@@ -8,9 +8,16 @@ public class ItemShop : MonoBehaviour {
     public int Food;
     public SpriteRenderer Sprite;
     public BuildingType DefaultGroup;
+    public PlacingToGrid PlaceToGrid;
+
 
     void Start ()
     {
         DefaultGroup = GetComponent<Building>().DefaultGrup;
+    }
+
+    public PlacingToGrid GetPlacingToGrid()
+    {
+        return PlaceToGrid;
     }
 }

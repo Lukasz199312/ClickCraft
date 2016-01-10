@@ -22,7 +22,7 @@ public abstract class BuildingType : MonoBehaviour {
 	
 	}
 
-    public void AddBuild()
+    public Building AddBuild()
     {
         // DO WYDZIELENIA DO OSOBNEK KLASY
         Building newBuilding = (Building)Instantiate(this._Buildnig);
@@ -31,9 +31,12 @@ public abstract class BuildingType : MonoBehaviour {
 
         newBuilding.gameObject.name = this.gameObject.name + " - " + Builds.Count;
         newBuilding.gameObject.SetActive(true);
+        
+
+        return newBuilding;
     }
 
-    public void AddBuild(Vector3 Position)
+    public Building AddBuild(Vector3 Position)
     {
         // DO WYDZIELENIA DO OSOBNEK KLASY
         Building newBuilding = (Building)Instantiate(this._Buildnig);
@@ -43,6 +46,8 @@ public abstract class BuildingType : MonoBehaviour {
         newBuilding.gameObject.name = this.gameObject.name + " - " + Builds.Count;
         newBuilding.gameObject.SetActive(true);
         newBuilding.transform.position = new Vector3(Position.x, Position.y, Position.z);
+
+        return newBuilding;
     }
 
     private void CreateBuild()
