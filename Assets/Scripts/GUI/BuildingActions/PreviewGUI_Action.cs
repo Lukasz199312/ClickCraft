@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class TouchedObject : MonoBehaviour {
+public class PreviewGUI_Action : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {

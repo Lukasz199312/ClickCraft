@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class DetectPointOnGrid : MonoBehaviour {
+public class DetectPointOnGrid : MonoBehaviour
+{
 
     private int GridSize;
 
@@ -10,7 +11,7 @@ public class DetectPointOnGrid : MonoBehaviour {
         GridSize = Size;
     }
 
-    public int[,] DetechTouchPositionOnGrid(GridElement[,] Grid,Vector2 TouchPosition)
+    public int[,] DetechTouchPositionOnGrid(GridElement[,] Grid, Vector2 TouchPosition)
     {
 
         int[,] Min_horizontally = new int[1, 2];
@@ -122,6 +123,9 @@ public class DetectPointOnGrid : MonoBehaviour {
                 Max_horizontally = (int[,])tmp.Clone();
             }
 
+            Max_horizontally = (int[,])isDontGO(Max_horizontally);
+            Min_horizontally = (int[,])isDontGO(Min_horizontally);
+
             GridElement elemnt = Grid[Max_horizontally[0, 0], Max_horizontally[0, 1]];
             double d1 = lenghtofsection(elemnt.getC().x, elemnt.getC().y, TouchPosition.x, TouchPosition.y);
             d1 = d1 + lenghtofsection(elemnt.getD().x, elemnt.getD().y, TouchPosition.x, TouchPosition.y);
@@ -130,14 +134,14 @@ public class DetectPointOnGrid : MonoBehaviour {
             double d2 = lenghtofsection(elemnt.getA().x, elemnt.getA().y, TouchPosition.x, TouchPosition.y);
             d2 = d2 + lenghtofsection(elemnt.getB().x, elemnt.getB().y, TouchPosition.x, TouchPosition.y);
 
-            if (d1 > d2) 
+            if (d1 > d2)
             {
                 //Debug.Log("1Poprawny indeks to " + Min_horizontally[0, 0] + " : " + Min_horizontally[0, 1]);
                 return Min_horizontally;
             }
             else
             {
-               // Debug.Log("1Poprawny indeks to " + Max_horizontally[0, 0] + " : " + Max_horizontally[0, 1]);
+                // Debug.Log("1Poprawny indeks to " + Max_horizontally[0, 0] + " : " + Max_horizontally[0, 1]);
                 return Max_horizontally;
             }
         }
@@ -151,6 +155,9 @@ public class DetectPointOnGrid : MonoBehaviour {
                 Min_horizontally = (int[,])Max_horizontally.Clone();
                 Max_horizontally = (int[,])tmp.Clone();
             }
+
+            Max_horizontally = (int[,])isDontGO(Max_horizontally).Clone();
+            Min_horizontally = (int[,])isDontGO(Min_horizontally).Clone();
 
             GridElement elemnt = Grid[Max_horizontally[0, 0], Max_horizontally[0, 1]];
             double d1 = lenghtofsection(elemnt.getA().x, elemnt.getA().y, TouchPosition.x, TouchPosition.y);
@@ -166,7 +173,7 @@ public class DetectPointOnGrid : MonoBehaviour {
 
             if (d1 > d2)
             {
-               // Debug.Log("2Poprawny indeks to " + Min_horizontally[0, 0] + " : " + Min_horizontally[0, 1]);
+                // Debug.Log("2Poprawny indeks to " + Min_horizontally[0, 0] + " : " + Min_horizontally[0, 1]);
                 return Min_horizontally;
             }
             else
@@ -176,8 +183,8 @@ public class DetectPointOnGrid : MonoBehaviour {
             }
         }
 
-       // Debug.Log("Sugerowany indeks - MIN: " + Min_horizontally[0, 0] + " , " + Min_horizontally[0, 1]);
-      //  Debug.Log("Sugerowany indeks - MAX: " + Max_horizontally[0, 0] + " , " + Max_horizontally[0, 1]);
+        // Debug.Log("Sugerowany indeks - MIN: " + Min_horizontally[0, 0] + " , " + Min_horizontally[0, 1]);
+        //  Debug.Log("Sugerowany indeks - MAX: " + Max_horizontally[0, 0] + " , " + Max_horizontally[0, 1]);
     }
 
 
@@ -244,5 +251,30 @@ public class DetectPointOnGrid : MonoBehaviour {
         d = Mathf.Pow((Bx - Ax), 2) + Mathf.Pow(By - Ay, 2);
 
         return d;
+    }
+
+    private int[,] isDontGO(int[,] tab)
+    {
+        if (tab[0, 0] >= GridSize)
+        {
+            tab[0, 0] = GridSize - 1;
+        }
+
+        if (tab[0, 0] < 0)
+        {
+            tab[0, 0] = 0;
+        }
+
+        if (tab[0, 1] >= GridSize)
+        {
+            tab[0, 1] = GridSize - 1;
+        }
+
+        if (tab[0, 1] < 0)
+        {
+            tab[0, 1] = 0;
+        }
+
+        return tab;
     }
 }

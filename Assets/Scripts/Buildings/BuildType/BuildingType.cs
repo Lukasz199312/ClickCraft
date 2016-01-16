@@ -31,7 +31,7 @@ public abstract class BuildingType : MonoBehaviour {
 
         newBuilding.gameObject.name = this.gameObject.name + " - " + Builds.Count;
         newBuilding.gameObject.SetActive(true);
-        
+
 
         return newBuilding;
     }

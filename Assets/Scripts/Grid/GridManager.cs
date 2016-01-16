@@ -10,11 +10,11 @@ public class GridManager : MonoBehaviour {
     public Material material;
     public LineRenderer Line;
     public Transform GreenField;
+    public GridElement GridElement;
 
     public Color32 RedColor;
     public Color32 GreenColor;
 
-    private GridElement GridElement = new GridElement();
     private GridElement grid  = new GridElement();
     private GridElement[,] Grid;
     private DetectPointOnGrid DetectPoint;
@@ -111,8 +111,8 @@ public class GridManager : MonoBehaviour {
 
         GridElement element = Grid[PlacingObject.Col, PlacingObject.Row];
 
-        PlacingObject.setPosition( new Vector3(element.getA().x + (element.getB().x - element.getA().x) + PlacingObject.X_Space,
-                                            element.getB().y - (element.getB().y - element.getA().y) - PlacingObject.Y_Space,
+        PlacingObject.setPosition( new Vector3(element.getA().x + (element.getB().x - element.getA().x) + PlacingObject.GetSpace_X(),
+                                            element.getB().y - (element.getB().y - element.getA().y) - PlacingObject.GetSpace_Y(),
                                             PlacingObject.transform.position.z));
         
         int ColSize = (int)Mathf.Ceil( (float)PlacingObject.Col_size / 2f);
@@ -123,8 +123,9 @@ public class GridManager : MonoBehaviour {
             for(int j = 1; j <= PlacingObject.Row_size; j++)
             {
                 GridElement element1 = Grid[PlacingObject.Col - ColSize + i, PlacingObject.Row - RowSize + j];
-                PlacingObject.addElementToList(Grid[PlacingObject.Col - ColSize + i, PlacingObject.Row - RowSize + j]);
                 element1.ToggleOn();
+                PlacingObject.addElementToList(Grid[PlacingObject.Col - ColSize + i, PlacingObject.Row - RowSize + j]);
+
             }
         }
 
@@ -143,7 +144,8 @@ public class GridManager : MonoBehaviour {
 
     private void InitializeGrid()
     {
-        GridElement GridPoint  = new GridElement();
+        GridElement GridPoint = Instantiate<GridElement>(this.GridElement);
+        GridPoint.transform.parent = this.gameObject.transform;
         Vector2 Point = StartPosition.position;
 
         for (int i = 0, j = 0; i < GridSize; i++)
@@ -156,7 +158,8 @@ public class GridManager : MonoBehaviour {
                 Point = GridPoint.getD();
 
                 Transform tmp = Instantiate<Transform>(GreenField);
-                tmp.parent = transform;
+                tmp.transform.parent = GridPoint.transform;
+            
 
                 GridPoint.setTexture(tmp);
                 GridPoint.setGreen(GreenColor);
@@ -164,7 +167,11 @@ public class GridManager : MonoBehaviour {
                 GridPoint.setCol(i);
                 GridPoint.setRow(j);
 
-                GridPoint = new GridElement();
+                GridPoint.transform.parent = this.gameObject.transform;
+                GridPoint = Instantiate<GridElement>(this.GridElement);
+    
+                tmp.name += "_" + i + "_" + j;
+                GridPoint.name += "_" + i + "_" + j;
 
             }
             Point = Grid[i, 0].getB();
@@ -213,6 +220,11 @@ public class GridManager : MonoBehaviour {
             }
         }
 
+    }
+
+    public List<PlacingToGrid> getTilles()
+    {
+        return TilleOnGrid;
     }
 
     public GridElement getTouchedElement()

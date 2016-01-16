@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class GridElement
+public class GridElement : MonoBehaviour
 {
     private Vector2 A;
     private Vector2 B;
@@ -107,12 +107,14 @@ public class GridElement
     {
         TextureTransform.gameObject.SetActive(true);
         Free = true;
+        TextureObject.gameObject.SetActive(true);
     }
 
     public void ToggleOff()
     {
         TextureTransform.gameObject.SetActive(false);
         Free = false;
+
     }
     private void TexturePositionSet()
     {

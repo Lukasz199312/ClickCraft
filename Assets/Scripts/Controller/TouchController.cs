@@ -1,27 +1,39 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
-public class TouchController : MonoBehaviour {
+public class TouchController : MonoBehaviour
+{
 
     public float MoveSpeed;
     public GridManager Grid;
     public bool enableMove = true;
     public GameObject TouchedObject;
     public Touch touch;
+    public int Delay;
 
     private Vector3 FirstTouch;
     private Vector3 Distance;
+    private DateTime FirstTapTime;
+    private GameObject TapedObject;
 
-	// Use this for initialization
-	void Start () {
+
+    // Use this for initialization
+    void Start()
+    {
         FirstTouch = new Vector3();
         Distance = new Vector3();
         Distance = Vector3.zero;
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	    foreach(Touch touch in Input.touches)
+
+        FirstTapTime = new DateTime();
+        TapedObject = this.gameObject;
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        foreach (Touch touch in Input.touches)
         {
             if (Input.touchCount > 1) return;
             this.touch = touch;
@@ -37,9 +49,9 @@ public class TouchController : MonoBehaviour {
         if (Distance.sqrMagnitude == 0) return;
         if (Input.touchCount == 0) return;
 
-        if(enableMove == true) MoveCamera();
+        if (enableMove == true) MoveCamera();
 
-	}
+    }
 
     private void PhaseAction(Touch touch)
     {
@@ -47,6 +59,7 @@ public class TouchController : MonoBehaviour {
         {
             FirstTouch = Camera.main.ScreenToWorldPoint(touch.position);
             DetectTouchOnGameObject(touch);
+            DetectDoubleTouch();
         }
         else if (touch.phase == TouchPhase.Moved)
         {
@@ -87,7 +100,7 @@ public class TouchController : MonoBehaviour {
     {
         //  Mask = 1 << 5;
         Vector3 pos = Camera.main.ScreenToWorldPoint(touch.position);
-       // if (Physics2D.Raycast(pos, Vector2.up, 0, 10, Mask) == true) Debug.Log("Its Work");
+        // if (Physics2D.Raycast(pos, Vector2.up, 0, 10, Mask) == true) Debug.Log("Its Work");
         RaycastHit2D hit = Physics2D.Raycast(pos, Vector2.zero, 0);
         if (hit != null && hit.collider != null)
         {
@@ -99,6 +112,24 @@ public class TouchController : MonoBehaviour {
         {
             TouchedObject = null;
             return null;
+        }
+    }
+
+    private void DetectDoubleTouch()
+    {
+        if (TouchedObject == null) return;
+
+        if(FirstTapTime.AddMilliseconds(Delay) > DateTime.Now)
+        {
+            if(TouchedObject.gameObject.name == TapedObject.gameObject.name)
+            {
+                TouchedObject.GetComponent<TouchedObject>().ShowGUI();
+            }
+        }
+        else
+        {
+            TapedObject = TouchedObject;
+            FirstTapTime = DateTime.Now;
         }
     }
 
