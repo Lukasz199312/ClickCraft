@@ -20,10 +20,11 @@ public class TransferGUI_Action : MonoBehaviour {
     {
         this._PlacingObject = _Place;
         this.Builder = Builder;
+        
     }
 
     public void ActionClick()
     {
-        
+        Builder.Transfer(_PlacingObject);
     }
 }

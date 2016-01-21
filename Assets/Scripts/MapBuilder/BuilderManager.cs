@@ -13,6 +13,7 @@ public class BuilderManager : MonoBehaviour {
 
     public Color32 NormalColor;
     public Color32 RedColor;
+    public Color32 DefaultColor;
 
     private bool isBuild = false;
     private bool MoveObject = false;
@@ -21,6 +22,8 @@ public class BuilderManager : MonoBehaviour {
     private GridElement FirstToucheelement;
     private bool flag = false;
     private PlacingToGrid BuildObjectPlacingToGrid;
+    private bool isTransfered = false;
+    private SpriteRenderer TMPsprite;
 
 	// Use this for initialization
 	void Start () {
@@ -28,6 +31,8 @@ public class BuilderManager : MonoBehaviour {
 
         OldPositionElement.setCol(0);
         OldPositionElement.setRow(0);
+
+        TMPsprite = BuildObjectSprite;
 	}
 	
 	// Update is called once per frame
@@ -116,10 +121,11 @@ public class BuilderManager : MonoBehaviour {
 
     public void Build(ItemShop item)
     {
-
         if (BuildObjectPlacingToGrid == null)
         {
             BuildObjectPlacingToGrid = BuildingSkeleton;
+            BuildObjectSprite = TMPsprite;
+      
         }
         shopitem = item;
         Debug.Log("BUILDER: " + item.DefaultGroup.name);
@@ -139,10 +145,11 @@ public class BuilderManager : MonoBehaviour {
        // placetogrid.Col = element.getCol();
        // placetogrid.Row = element.getRow();
 
+        BuildObjectSprite.sprite = item.Sprite.sprite;
         BuildObjectSprite.gameObject.SetActive(true);
         BuildObjectSprite.transform.localScale = item.transform.localScale;
 
-        BuildObjectSprite.sprite = item.Sprite.sprite;
+
 
         BuildObjectPlacingToGrid.Col_size = item.GetPlacingToGrid().Col_size;
         BuildObjectPlacingToGrid.Row_size = item.GetPlacingToGrid().Row_size;
@@ -166,37 +173,82 @@ public class BuilderManager : MonoBehaviour {
         
 
         isBuild = true;
+        BuildObjectPlacingToGrid.gameObject.SetActive(true);
+        
         CheckGridCollision();
     }
 
+
+    public void Transfer(PlacingToGrid item)
+    {
+
+
+        BuildObjectPlacingToGrid = item;
+        BuildObjectSprite = item.GetComponent<SpriteRenderer>();
+
+        Vector3 Position = Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.transform.position.x + Screen.width / 2,
+                                       Camera.main.transform.position.y + Screen.height / 2,
+                                       0));
+
+        isBuild = true;
+        isTransfered = true;
+        CheckGridCollision();
+    }
+
+
     public void Tranfer(PlacingToGrid PlacingObject)
     {
+        BuildObjectPlacingToGrid.RelaseAll();
         BuildObjectPlacingToGrid = PlacingObject;
+        BuildObjectSprite.sprite = PlacingObject.gameObject.GetComponent<SpriteRenderer>().sprite;
 
         isBuild = true;
     }
 
     public void FinalizeBuild()
     {
-        Building build = shopitem.DefaultGroup.AddBuild(BuildObjectPlacingToGrid.transform.position);
-        PlacingToGrid placetogrid = build.GetComponent<PlacingToGrid>();
 
-        placetogrid.Col = BuildObjectPlacingToGrid.Col;
-        placetogrid.Row = BuildObjectPlacingToGrid.Row;
+        if(isTransfered == true)
+        {
+            BuildObjectSprite.color = DefaultColor;
 
-        build.transform.localScale = new Vector3(BuildObjectPlacingToGrid.transform.localScale.x,
-                                                 BuildObjectPlacingToGrid.transform.localScale.y,
-                                                 build.transform.localScale.z);
+        }
+        else
+        {
+            Building build = shopitem.DefaultGroup.AddBuild(BuildObjectPlacingToGrid.transform.position);
+            PlacingToGrid placetogrid = build.GetComponent<PlacingToGrid>();
 
-        BuildObjectSprite.gameObject.SetActive(false);
-        placetogrid.scale = BuildObjectPlacingToGrid.scale;
+            placetogrid.Col = BuildObjectPlacingToGrid.Col;
+            placetogrid.Row = BuildObjectPlacingToGrid.Row;
+
+            build.transform.localScale = new Vector3(BuildObjectPlacingToGrid.transform.localScale.x,
+                                                     BuildObjectPlacingToGrid.transform.localScale.y,
+                                                     build.transform.localScale.z);
+
+            BuildObjectSprite.gameObject.SetActive(false);
+            placetogrid.scale = BuildObjectPlacingToGrid.scale;
+        }
+
+
+        BuildObjectSprite.color = DefaultColor;
+        isBuild = false;
+        isTransfered = false;
 
         BuildObjectPlacingToGrid = null;
-        isBuild = false;
+        BuildingSkeleton.RelaseAll();
     }
 
     public void MirrorRescale()
     {
         BuildObjectPlacingToGrid.MirrorScale();
+    }
+
+    public void CancleBuild()
+    {
+        if(isTransfered == false)BuildObjectPlacingToGrid.gameObject.SetActive(false);
+        BuildObjectSprite.color = DefaultColor;
+        BuildObjectPlacingToGrid = null;
+        isBuild = false;
+        isTransfered = false;
     }
 }

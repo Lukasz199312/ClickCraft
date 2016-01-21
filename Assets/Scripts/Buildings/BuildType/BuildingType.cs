@@ -54,4 +54,9 @@ public abstract class BuildingType : MonoBehaviour {
     {
 
     }
+
+    public void RemoveBuild(Building Build)
+    {
+        Builds.Remove(Build);
+    }
 }

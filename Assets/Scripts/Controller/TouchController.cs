@@ -124,6 +124,7 @@ public class TouchController : MonoBehaviour
             if(TouchedObject.gameObject.name == TapedObject.gameObject.name)
             {
                 TouchedObject.GetComponent<TouchedObject>().ShowGUI();
+
             }
         }
         else

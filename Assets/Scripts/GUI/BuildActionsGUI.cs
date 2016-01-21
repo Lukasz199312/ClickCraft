@@ -3,8 +3,6 @@ using System.Collections;
 
 public class BuildActionsGUI : BasicBuildActionsGUI {
 
-    private TouchedObject _TouchedObject;
-
 	// Use this for initialization
 	void Start () {
 	
@@ -17,7 +15,7 @@ public class BuildActionsGUI : BasicBuildActionsGUI {
 
     public override void InitializeDisplace()
     {
-       
+        Displace.Initialize(_TouchedObject.gameObject);
     }
 
     public override void InitializePreview()

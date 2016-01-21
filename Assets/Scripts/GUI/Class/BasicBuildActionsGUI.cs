@@ -8,7 +8,7 @@ public abstract class BasicBuildActionsGUI : MonoBehaviour {
     public TransferGUI_Action Transfer;
     public UpgradesGUI_Action Upgrades;
 
-    private TouchedObject _TouchedObject;
+    protected TouchedObject _TouchedObject;
 
     public abstract void InitializeDisplace();
     public abstract void InitializePreview();

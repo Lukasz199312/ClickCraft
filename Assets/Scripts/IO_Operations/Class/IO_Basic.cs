@@ -30,6 +30,11 @@ public static class IO_Basic
         return PlayerPrefs.GetString(Name);
     }
 
+    public static void Delete(String Name)
+    {
+        PlayerPrefs.DeleteKey(Name);
+    }
+
     private static bool isExist(String Name)
     {
         if (PlayerPrefs.HasKey(Name)) return true;
