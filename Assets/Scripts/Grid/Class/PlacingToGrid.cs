@@ -37,6 +37,7 @@ public class PlacingToGrid : MonoBehaviour {
             X_Space = X_Space_Mirror;
             Y_Space = Y_Space_Mirror;
         }
+
         Manager.Place(this);
 	}
 	
@@ -44,6 +45,7 @@ public class PlacingToGrid : MonoBehaviour {
 	void Update () {
      if(Debugdraw == true) 
      {
+
          Manager.Place(this);
          if(scale == false)
          {
@@ -58,6 +60,7 @@ public class PlacingToGrid : MonoBehaviour {
          }
 
      }
+
 	}
 
     public void setPosition(Vector3 vector)
@@ -75,6 +78,7 @@ public class PlacingToGrid : MonoBehaviour {
             element.ToggleOff();
        
         }
+
         GridElementList.Clear();
     }
 
@@ -92,6 +96,18 @@ public class PlacingToGrid : MonoBehaviour {
         int Tmpsize = Col_size;
         Col_size = Row_size;
         Row_size = Tmpsize;
+
+        if (scale == false)
+        {
+            X_Space = X_Space_Normal;
+            Y_Space = Y_Space_Normal;
+
+        }
+        else
+        {
+            X_Space = X_Space_Mirror;
+            Y_Space = Y_Space_Mirror;
+        }
 
         Manager.Place(this);
     }
@@ -151,4 +167,6 @@ public class PlacingToGrid : MonoBehaviour {
     {
         return this.Y_Space_Mirror;
     }
+
+
 }

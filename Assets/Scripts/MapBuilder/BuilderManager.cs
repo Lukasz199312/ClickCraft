@@ -211,6 +211,7 @@ public class BuilderManager : MonoBehaviour {
         if(isTransfered == true)
         {
             BuildObjectSprite.color = DefaultColor;
+           
 
         }
         else
@@ -220,6 +221,9 @@ public class BuilderManager : MonoBehaviour {
 
             placetogrid.Col = BuildObjectPlacingToGrid.Col;
             placetogrid.Row = BuildObjectPlacingToGrid.Row;
+
+            placetogrid.Col_size = BuildObjectPlacingToGrid.Col_size;
+            placetogrid.Row_size = BuildObjectPlacingToGrid.Row_size;
 
             build.transform.localScale = new Vector3(BuildObjectPlacingToGrid.transform.localScale.x,
                                                      BuildObjectPlacingToGrid.transform.localScale.y,

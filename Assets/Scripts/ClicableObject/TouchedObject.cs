@@ -23,6 +23,7 @@ public class TouchedObject : MonoBehaviour {
         BuildingActionGUI.gameObject.SetActive(true);
         BuildingActionGUI.setTouchedObject(this);
         BuildingActionGUI.ReloadData();
+        BuildingActionGUI.HideShopMenu();
     }
 
     public void HideGUI()

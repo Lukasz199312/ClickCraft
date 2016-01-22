@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public abstract class BasicBuildActionsGUI : MonoBehaviour {
 
@@ -7,6 +8,9 @@ public abstract class BasicBuildActionsGUI : MonoBehaviour {
     public PreviewGUI_Action Preview;
     public TransferGUI_Action Transfer;
     public UpgradesGUI_Action Upgrades;
+    public GameObject ShopMenu;
+    public GameObject CategoryMenu;
+    public Button button;
 
     protected TouchedObject _TouchedObject;
 
@@ -27,4 +31,12 @@ public abstract class BasicBuildActionsGUI : MonoBehaviour {
         InitializeTranfer();
         InitializeUpgrades();
     }
+
+    public void HideShopMenu()
+    {
+        ShopMenu.SetActive(false);
+        CategoryMenu.SetActive(false);
+    }
+
+
 }

@@ -109,6 +109,7 @@ public class GridManager : MonoBehaviour {
         if (PlacingObject.Col_size == 0 && PlacingObject.Row_size == 0) return;
         PlacingObject.RelaseAll();
 
+
         GridElement element = Grid[PlacingObject.Col, PlacingObject.Row];
 
         PlacingObject.setPosition( new Vector3(element.getA().x + (element.getB().x - element.getA().x) + PlacingObject.GetSpace_X(),
@@ -118,16 +119,19 @@ public class GridManager : MonoBehaviour {
         int ColSize = (int)Mathf.Ceil( (float)PlacingObject.Col_size / 2f);
         int RowSize = (int)Mathf.Ceil( (float)PlacingObject.Row_size / 2f);
 
-        for(int i = 1; i <= PlacingObject.Col_size; i++)
+        for(int i = 0; i < PlacingObject.Col_size; i++)
         {
-            for(int j = 1; j <= PlacingObject.Row_size; j++)
+            for(int j = 0; j < PlacingObject.Row_size; j++)
             {
-                GridElement element1 = Grid[PlacingObject.Col - ColSize + i, PlacingObject.Row - RowSize + j];
+                GridElement element1 = Grid[PlacingObject.Col + i, PlacingObject.Row + j];
                 element1.ToggleOn();
-                PlacingObject.addElementToList(Grid[PlacingObject.Col - ColSize + i, PlacingObject.Row - RowSize + j]);
+                PlacingObject.addElementToList(Grid[PlacingObject.Col + i, PlacingObject.Row  + j]);
 
             }
         }
+
+
+
 
         if (TilleOnGrid.Contains(PlacingObject) == false)
         {
@@ -233,3 +237,17 @@ public class GridManager : MonoBehaviour {
     }
 
 }
+
+
+
+
+        //for(int i = 1; i <= PlacingObject.Col_size; i++)
+        //{
+        //    for(int j = 1; j <= PlacingObject.Row_size; j++)
+        //    {
+        //        GridElement element1 = Grid[PlacingObject.Col - ColSize + i, PlacingObject.Row - RowSize + j];
+        //        element1.ToggleOn();
+        //        PlacingObject.addElementToList(Grid[PlacingObject.Col - ColSize + i, PlacingObject.Row - RowSize + j]);
+
+        //    }
+        //}
