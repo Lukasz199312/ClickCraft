@@ -10,6 +10,7 @@ public abstract class BuildingType : MonoBehaviour {
     public Building _Buildnig;
 
     private string BuildTypeName = "";
+    private int Index;
     //private List<Upgrade> UpgradesList;
 
 	// Use this for initialization
@@ -32,6 +33,7 @@ public abstract class BuildingType : MonoBehaviour {
         newBuilding.gameObject.name = this.gameObject.name + " - " + Builds.Count;
         newBuilding.gameObject.SetActive(true);
 
+        Index++;
 
         return newBuilding;
     }
@@ -47,6 +49,22 @@ public abstract class BuildingType : MonoBehaviour {
         newBuilding.gameObject.SetActive(true);
         newBuilding.transform.position = new Vector3(Position.x, Position.y, Position.z);
 
+        Index++;
+
+        return newBuilding;
+    }
+
+    public Building Initialize()
+    {
+        Building newBuilding = (Building)Instantiate(this._Buildnig);
+        Builds.Add(newBuilding);
+        newBuilding.gameObject.transform.parent = gameObject.transform;
+
+        newBuilding.gameObject.name = this.gameObject.name + " - " + Builds.Count;
+        newBuilding.gameObject.SetActive(true);
+
+        Index++;
+
         return newBuilding;
     }
 
@@ -59,4 +77,15 @@ public abstract class BuildingType : MonoBehaviour {
     {
         Builds.Remove(Build);
     }
+
+    public int getIndex()
+    {
+        return Index;
+    }
+
+    public void setIndex(int index)
+    {
+        this.Index = index;
+    }
+
 }
