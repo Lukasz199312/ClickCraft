@@ -10,7 +10,6 @@ public abstract class BuildingType : MonoBehaviour {
     public Building _Buildnig;
 
     private string BuildTypeName = "";
-    private int Index;
     //private List<Upgrade> UpgradesList;
 
 	// Use this for initialization
@@ -31,9 +30,9 @@ public abstract class BuildingType : MonoBehaviour {
         newBuilding.gameObject.transform.parent = gameObject.transform;
 
         newBuilding.gameObject.name = this.gameObject.name + " - " + Builds.Count;
+        newBuilding.Index = Builds.Count;
         newBuilding.gameObject.SetActive(true);
 
-        Index++;
 
         return newBuilding;
     }
@@ -46,10 +45,10 @@ public abstract class BuildingType : MonoBehaviour {
         newBuilding.gameObject.transform.parent = gameObject.transform;
 
         newBuilding.gameObject.name = this.gameObject.name + " - " + Builds.Count;
+        newBuilding.Index = Builds.Count;
         newBuilding.gameObject.SetActive(true);
         newBuilding.transform.position = new Vector3(Position.x, Position.y, Position.z);
 
-        Index++;
 
         return newBuilding;
     }
@@ -60,10 +59,11 @@ public abstract class BuildingType : MonoBehaviour {
         Builds.Add(newBuilding);
         newBuilding.gameObject.transform.parent = gameObject.transform;
 
-        newBuilding.gameObject.name = this.gameObject.name + " - " + Builds.Count;
+        newBuilding.gameObject.name = newBuilding.BuildName + " - " + Builds.Count;
+        newBuilding.Index = Builds.Count;
+
         newBuilding.gameObject.SetActive(true);
 
-        Index++;
 
         return newBuilding;
     }
@@ -75,17 +75,33 @@ public abstract class BuildingType : MonoBehaviour {
 
     public void RemoveBuild(Building Build)
     {
+        bool Dec = false;
+        IEnumerator<Building> ienum = Builds.GetEnumerator();
+
+        while(ienum.MoveNext())
+        {
+            Building tmpBuild = (Building)ienum.Current;
+            
+            if(Dec == false)
+            {
+                if (tmpBuild.Index == Build.Index)
+                {
+                    Dec = true;
+                    IO_Basic.Delete(Builds[Builds.Count - 1].gameObject.name);
+                }
+            }
+            else
+            {
+                tmpBuild.Index = tmpBuild.Index - 1;
+                tmpBuild.gameObject.name = tmpBuild.BuildName + " - " + tmpBuild.Index;
+            }
+
+        }
+
         Builds.Remove(Build);
+
+        
     }
 
-    public int getIndex()
-    {
-        return Index;
-    }
-
-    public void setIndex(int index)
-    {
-        this.Index = index;
-    }
 
 }

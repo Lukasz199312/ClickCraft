@@ -10,6 +10,8 @@ public abstract class Building : Observe {
     public BuildingStatistic Build_Statistic;
     public Resource ResourceProduction;
     public BuildingType DefaultGrup;
+    public int Index;
+    public string BuildName;
 
     public void Start ()
     {

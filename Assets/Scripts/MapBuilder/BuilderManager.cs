@@ -24,6 +24,7 @@ public class BuilderManager : MonoBehaviour {
     private PlacingToGrid BuildObjectPlacingToGrid;
     private bool isTransfered = false;
     private SpriteRenderer TMPsprite;
+    private PlacingToGrid FirstObjectPosition;
 
 	// Use this for initialization
 	void Start () {
@@ -33,18 +34,22 @@ public class BuilderManager : MonoBehaviour {
         OldPositionElement.setRow(0);
 
         TMPsprite = BuildObjectSprite;
+
+        FirstObjectPosition = new PlacingToGrid();
 	}
 	
 	// Update is called once per frame
 	void Update () {
         if(isBuild == false) return;
+        Controller.DisableDoubleTouch = true;
 
         if (Controller.TouchedObject != null && Controller.TouchedObject.Equals(BuildObjectPlacingToGrid.gameObject) && flag == false)
         {
             Controller.enableMove = false;
             FirstToucheelement = Grid.DetechTouchPositionOnGrid(Camera.main.ScreenToWorldPoint(Controller.touch.position));
-            Debug.Log("SET FIRST ELEMENT");
+           // Debug.Log("SET FIRST ELEMENT");
             flag = true;
+            
 
         }
         else if (Controller.enableMove == false)
@@ -52,7 +57,7 @@ public class BuilderManager : MonoBehaviour {
             GridElement element = Grid.DetechTouchPositionOnGrid(Camera.main.ScreenToWorldPoint(Controller.touch.position));
 
 
-            Debug.Log("RESULT:" + (element.getCol() - FirstToucheelement.getCol()));
+            //Debug.Log("RESULT:" + (element.getCol() - FirstToucheelement.getCol()));
 
             if (element.getRow() - FirstToucheelement.getRow() == 0 && element.getCol() - FirstToucheelement.getCol() == 0) return;
 
@@ -125,6 +130,7 @@ public class BuilderManager : MonoBehaviour {
         {
             BuildObjectPlacingToGrid = BuildingSkeleton;
             BuildObjectSprite = TMPsprite;
+            BuildObjectPlacingToGrid.ReloadNormal();
       
         }
         shopitem = item;
@@ -176,6 +182,10 @@ public class BuilderManager : MonoBehaviour {
         BuildObjectPlacingToGrid.gameObject.SetActive(true);
         
         CheckGridCollision();
+
+        FirstObjectPosition.Col = BuildObjectPlacingToGrid.Col;
+        FirstObjectPosition.Row = BuildObjectPlacingToGrid.Row;
+        FirstObjectPosition.scale = BuildObjectPlacingToGrid.scale;
     }
 
 
@@ -240,6 +250,7 @@ public class BuilderManager : MonoBehaviour {
 
         BuildObjectPlacingToGrid = null;
         BuildingSkeleton.RelaseAll();
+        Controller.DisableDoubleTouch = false;
     }
 
     public void MirrorRescale()
@@ -251,8 +262,15 @@ public class BuilderManager : MonoBehaviour {
     {
         if(isTransfered == false)BuildObjectPlacingToGrid.gameObject.SetActive(false);
         BuildObjectSprite.color = DefaultColor;
+
+        BuildObjectPlacingToGrid.Col = FirstObjectPosition.Col;
+        BuildObjectPlacingToGrid.Row = FirstObjectPosition.Row;
+        BuildObjectPlacingToGrid.scale = FirstObjectPosition.scale;
+
         BuildObjectPlacingToGrid = null;
         isBuild = false;
         isTransfered = false;
+
+        Controller.DisableDoubleTouch = false;
     }
 }

@@ -13,6 +13,7 @@ public abstract class BasicBuildActionsGUI : MonoBehaviour {
     public Button button;
 
     protected TouchedObject _TouchedObject;
+    public TouchController Controller;
 
     public abstract void InitializeDisplace();
     public abstract void InitializePreview();
@@ -30,12 +31,18 @@ public abstract class BasicBuildActionsGUI : MonoBehaviour {
         InitializePreview();
         InitializeTranfer();
         InitializeUpgrades();
+
     }
 
     public void HideShopMenu()
     {
         ShopMenu.SetActive(false);
         CategoryMenu.SetActive(false);
+    }
+
+    void OnDisable()
+    {
+        this.Controller.DisableDoubleTouch = false;
     }
 
 

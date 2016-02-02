@@ -85,7 +85,6 @@ public class PlacingToGrid : MonoBehaviour {
     public void addElementToList(GridElement element)
     {
         GridElementList.Add(element);
-        Debug.Log("TTTTTTTTTTTTT");
     }
 
     public void MirrorScale()
@@ -116,6 +115,8 @@ public class PlacingToGrid : MonoBehaviour {
     {
         X_Space = X_Space_Normal;
         Y_Space = Y_Space_Normal;
+
+        scale = false;
     }
 
     public float GetSpace_X()

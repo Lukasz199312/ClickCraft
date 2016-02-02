@@ -11,6 +11,7 @@ public class TouchController : MonoBehaviour
     public GameObject TouchedObject;
     public Touch touch;
     public int Delay;
+    public bool DisableDoubleTouch = false;
 
     private Vector3 FirstTouch;
     private Vector3 Distance;
@@ -118,12 +119,14 @@ public class TouchController : MonoBehaviour
     private void DetectDoubleTouch()
     {
         if (TouchedObject == null) return;
+        if (DisableDoubleTouch == true) return;
 
         if(FirstTapTime.AddMilliseconds(Delay) > DateTime.Now)
         {
             if(TouchedObject.gameObject.name == TapedObject.gameObject.name)
             {
                 TouchedObject.GetComponent<TouchedObject>().ShowGUI();
+                DisableDoubleTouch = true;
 
             }
         }

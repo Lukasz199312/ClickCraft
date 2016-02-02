@@ -10,7 +10,7 @@ public class BuildingGroupDataPacker : DataPacker {
         BuildingType buildingtype = (BuildingType)Data;
         for (int i = buildingtype.Builds.Count; i < Convert.ToInt32(ob); i++)
         {
-            buildingtype.AddBuild();
+            buildingtype.Initialize();
         }
 
         return false;
