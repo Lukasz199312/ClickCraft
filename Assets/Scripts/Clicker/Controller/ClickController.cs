@@ -3,6 +3,8 @@ using System.Collections;
 
 public class ClickController : MonoBehaviour {
 
+    public ClickerScene Scene;
+
 	// Use this for initialization
 	void Start () {
 	
@@ -22,7 +24,7 @@ public class ClickController : MonoBehaviour {
     {
         if (touch.phase == TouchPhase.Began)
         {
-
+            Scene.ClickAction(); 
         }
     }
 }

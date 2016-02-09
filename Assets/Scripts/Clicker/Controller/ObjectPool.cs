@@ -11,10 +11,12 @@ public class ObjectPool : MonoBehaviour {
     private Image image;
 
     private Animator anim;
+    private RectTransform Rect; 
 
 	// Use this for initialization
 	void Start () {
         anim = gameObject.GetComponent<Animator>();
+        Rect = this.gameObject.GetComponent<RectTransform>();
 	}
 	
 	// Update is called once per frame
@@ -33,5 +35,15 @@ public class ObjectPool : MonoBehaviour {
     public void setTexture(SpriteRenderer sprite)
     {
         image.sprite = sprite.sprite;
+    }
+
+    public void setTexture(Sprite sprite)
+    {
+        image.sprite = sprite;
+    }
+
+    public void SetPosition(Vector3 vec)
+    {
+        this.transform.parent.transform.position = new Vector3(vec.x, vec.y, vec.z);
     }
 }
