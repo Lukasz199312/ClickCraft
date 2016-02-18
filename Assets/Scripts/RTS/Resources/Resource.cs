@@ -6,6 +6,10 @@ public class Resource : MonoBehaviour {
 
     public SimpleData Value;
     public float RequiredHitPoints;
+    public float DropChance;
+    public Sprite sprite;
+    public bool Specjal = true;
+
     protected string text;
 
 	// Use this for initialization

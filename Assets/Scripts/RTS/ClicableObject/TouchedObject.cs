@@ -4,7 +4,7 @@ using System.Collections;
 public class TouchedObject : MonoBehaviour {
 
     public BuildActionsGUI BuildingActionGUI;
-    public UpgradeSystem Upgrades;
+    //public UpgradeSystem Upgrades;
     public BuilderManager Builder;
     public PlacingToGrid Placing;
 

@@ -4,6 +4,6 @@ using System.Collections;
 public class BuildingData : MonoBehaviour {
 
     public Building _Building;
-    public UpgradeSystem _UpgradeSystem;
+    //public UpgradeSystem _UpgradeSystem;
     public PlacingToGrid PlaceToGrid;
 }

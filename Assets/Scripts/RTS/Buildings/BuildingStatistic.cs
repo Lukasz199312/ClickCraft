@@ -34,7 +34,7 @@ public class BuildingStatistic {
     {
         UP_Speed = Speed;
         UP_HitPoints = HitPoints;
-        UP_ProgressProduction = ProgressProduction;
+        UP_ProgressProduction = (double)decimal.Round((decimal)ProgressProduction, 2);
         UP_Capacity = Capacity;
     }
 }

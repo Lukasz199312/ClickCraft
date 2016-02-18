@@ -4,17 +4,21 @@ using System.Collections;
 public class PoolingManager : MonoBehaviour {
 
     public GameObject Source;
+    public GameObject SourceCric;
     public int count;
     public int SpecialCount;
+    public int CricCount;
     public Canvas canvas;
 
     private ObjectPool[] ObjectPooling = null;
-    private ObjectPool[] SpecialBojectPooling = null;
+    private ObjectPool[] SpecialObjectPooling = null;
+    private ObjectPool[] CricObjectPooling = null;
 
 	// Use this for initialization
 	void Start () {
         ObjectPooling = new ObjectPool[count];
-        SpecialBojectPooling = new ObjectPool[SpecialCount];
+        SpecialObjectPooling = new ObjectPool[SpecialCount];
+        CricObjectPooling = new ObjectPool[CricCount];
 
         for(int i=0; i < count; i++)
         {
@@ -49,12 +53,28 @@ public class PoolingManager : MonoBehaviour {
             tmpobj.transform.position = this.transform.position;
 
 
-            SpecialBojectPooling[i] = tmpobj.transform.GetChild(0).GetComponent<ObjectPool>();
-            SpecialBojectPooling[i].gameObject.SetActive(false);
+            SpecialObjectPooling[i] = tmpobj.transform.GetChild(0).GetComponent<ObjectPool>();
+            SpecialObjectPooling[i].gameObject.SetActive(false);
 
 
 
-            RectTransform rec = SpecialBojectPooling[i].gameObject.transform.parent.gameObject.GetComponent<RectTransform>();
+            RectTransform rec = SpecialObjectPooling[i].gameObject.transform.parent.gameObject.GetComponent<RectTransform>();
+            rec.offsetMin = new Vector2(0, 0);
+            rec.offsetMax = new Vector2(0, 0);
+        }
+
+        for (int i = 0; i < CricCount; i++)
+        {
+            GameObject tmpobj = Instantiate(SourceCric);
+            tmpobj.transform.parent = this.transform;
+            tmpobj.transform.position = this.transform.position;
+
+
+            CricObjectPooling[i] = tmpobj.transform.GetChild(0).GetComponent<ObjectPool>();
+            CricObjectPooling[i].gameObject.SetActive(false);
+
+
+            RectTransform rec = CricObjectPooling[i].gameObject.transform.parent.gameObject.GetComponent<RectTransform>();
             rec.offsetMin = new Vector2(0, 0);
             rec.offsetMax = new Vector2(0, 0);
         }
@@ -75,9 +95,32 @@ public class PoolingManager : MonoBehaviour {
         return ObjectPooling[0];
     }
 
+    public ObjectPool getSpecialObjectPool()
+    {
+        for (int i = 0; i < SpecialCount; i++)
+        {
+            if (SpecialObjectPooling[i].gameObject.activeInHierarchy == false) return SpecialObjectPooling[i];
+        }
+        return SpecialObjectPooling[0];
+    }
+
+    public ObjectPool getCricObjectPool()
+    {
+        for (int i = 0; i < CricCount; i++)
+        {
+            if (CricObjectPooling[i].gameObject.activeInHierarchy == false) return CricObjectPooling[i];
+        }
+        return CricObjectPooling[0];
+    }
+
     public ObjectPool[] getPoolingList()
     {
         return this.ObjectPooling;
+    }
+
+    public ObjectPool[] getSpecialPoolingList()
+    {
+        return this.SpecialObjectPooling;
     }
 
   

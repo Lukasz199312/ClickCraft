@@ -4,6 +4,9 @@ using System.Collections;
 public abstract class ClickerScene : MonoBehaviour {
 
     public PoolingManager pManager;
+    public BasicProfil Profil;
+
+    public Resource[] _Resources;
 
     private float ScreenWidth;
     private float ScreenHeight;
@@ -23,7 +26,11 @@ public abstract class ClickerScene : MonoBehaviour {
     public void goToScene()
     {
         Camera.main.transform.position = new Vector3(transform.position.x, transform.position.y, Camera.main.transform.position.z);
-        InitializeObjectPool();
+
+        Profil.Resources = new Resource[_Resources.Length];
+        _Resources.CopyTo(Profil.Resources, 0);
+
+        InitializeObjectPool(Profil.Resources[0].sprite);
     }
 
     public Vector3 GenerateNewPosition()
@@ -34,6 +41,9 @@ public abstract class ClickerScene : MonoBehaviour {
         return new Vector3(x, y, this.transform.position.z + 50);
     }
 
-    public abstract void ClickAction();
-    public abstract void InitializeObjectPool();
+    public abstract void ClickAction(int value);
+    public abstract void ClickActionSpecial(int value, Sprite sprite);
+    public abstract void ClickActionCric(int value, Sprite sprite);
+
+    public abstract void InitializeObjectPool(Sprite sprite);
 }

@@ -13,7 +13,7 @@ public class BuildingDataPacker : DataPacker {
         string Loaded_Data = (string)ob;
         BuildingData _Building = (BuildingData)Data;
 
-        Debug.Log("Percent Upgrade: " + _Building._UpgradeSystem.PercentUpgrades.Count);
+       // Debug.Log("Percent Upgrade: " + _Building._UpgradeSystem.PercentUpgrades.Count);
         
         List<string> ChainData = getChainData(Loaded_Data);
         InitializeLoadedData(_Building, ChainData);
@@ -31,9 +31,10 @@ public class BuildingDataPacker : DataPacker {
         strData = strData + _BuildingData.PlaceToGrid.Col + ":" + _BuildingData.PlaceToGrid.Row + ":";
         strData = strData + Convert.ToInt32(_BuildingData.PlaceToGrid.scale);
 
-        strData = strData + getStringDataToSave(_BuildingData._UpgradeSystem.Upgrades);
-        strData = strData + getStringDataToSave(_BuildingData._UpgradeSystem.PercentUpgrades) + ":";
+       // strData = strData + getStringDataToSave(_BuildingData._UpgradeSystem.Upgrades);
+       // strData = strData + getStringDataToSave(_BuildingData._UpgradeSystem.PercentUpgrades) + ":";
 
+        strData += ":";
         Debug.Log("BUILD DATA: " + strData);
 
         return strData;
@@ -79,15 +80,15 @@ public class BuildingDataPacker : DataPacker {
         _Building.PlaceToGrid.Row = int.Parse(ChainData[2]);
         if (Convert.ToBoolean(int.Parse(ChainData[3])) == true) _Building.PlaceToGrid.MirrorScale();
 
-        for (int i = 0; i < _Building._UpgradeSystem.Upgrades.Count; i++, index++)
-        {
-            _Building._UpgradeSystem.Upgrades[i].UpgradeLevel = Convert.ToInt32(ChainData[index]);
-        }
+        //for (int i = 0; i < _Building._UpgradeSystem.Upgrades.Count; i++, index++)
+        //{
+        //    _Building._UpgradeSystem.Upgrades[i].UpgradeLevel = Convert.ToInt32(ChainData[index]);
+        //}
 
-        for (int i = 0; i < _Building._UpgradeSystem.PercentUpgrades.Count; i++, index++)
-        {
-            _Building._UpgradeSystem.PercentUpgrades[i].UpgradeLevel = Convert.ToInt32(ChainData[index]);
-        }
+        //for (int i = 0; i < _Building._UpgradeSystem.PercentUpgrades.Count; i++, index++)
+        //{
+        //    _Building._UpgradeSystem.PercentUpgrades[i].UpgradeLevel = Convert.ToInt32(ChainData[index]);
+        //}
 
   
     }

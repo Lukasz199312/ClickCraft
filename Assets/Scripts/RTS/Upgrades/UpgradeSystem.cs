@@ -12,14 +12,7 @@ public class UpgradeSystem : MonoBehaviour{
 
 	// Use this for initialization
 	void Awake () {
-        _BuildingStatistic = GetComponent<Building>().Build_Statistic;
-
         SortPercentUpgrades();
-
-        Upgrades =  CopyUpgrades(Upgrades);
-        PercentUpgrades =  CopyUpgrades(PercentUpgrades);
-
-        UpdateUpgrades(Upgrades);
 	}
 	
     public BuildingStatistic getBuildingStatistic()
@@ -87,5 +80,25 @@ public class UpgradeSystem : MonoBehaviour{
         }
        return tmpUpgrades;
         
+    }
+
+    public void setBuildStatistic(BuildingStatistic bStatistic)
+    {
+        _BuildingStatistic = bStatistic;
+
+        Upgrades = CopyUpgrades(Upgrades);
+        PercentUpgrades = CopyUpgrades(PercentUpgrades);
+
+        UpdateUpgrades(Upgrades);
+    }
+
+    public void ReloadUpdates()
+    {
+        SortPercentUpgrades();
+        
+        Upgrades = CopyUpgrades(Upgrades);
+        PercentUpgrades = CopyUpgrades(PercentUpgrades);
+
+        UpdateUpgrades(Upgrades);
     }
 }

@@ -41,6 +41,7 @@ public abstract class Building : Observe {
         result /= ResourceProduction.RequiredHitPoints;
 
         double resultRest = result - (int)result;
+        resultRest = (double)decimal.Round((decimal)resultRest, 2);
 
         result = (int)result * Build_Statistic.UP_Capacity;
         ResourceProduction.add((int)result);
