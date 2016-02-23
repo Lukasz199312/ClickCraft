@@ -26,15 +26,18 @@ public class BuildingDataPacker : DataPacker {
         BuildingData _BuildingData = (BuildingData)ob;
 
         string strData;
-        strData = _BuildingData._Building.Build_Statistic.ProgressProduction.ToString() + ":";
+        strData = _BuildingData._Building.Build_Statistic.ProgressProduction.ToString() + ";";
 
-        strData = strData + _BuildingData.PlaceToGrid.Col + ":" + _BuildingData.PlaceToGrid.Row + ":";
-        strData = strData + Convert.ToInt32(_BuildingData.PlaceToGrid.scale);
+        strData = strData + _BuildingData.PlaceToGrid.Col + ";" + _BuildingData.PlaceToGrid.Row + ";";
+        strData = strData + Convert.ToInt32(_BuildingData.PlaceToGrid.scale) + ";" ;
+
+        if (_BuildingData._Building.InConstruction.active == true) strData = strData + _BuildingData._Building.InConstruction.Date;
+        else strData = strData + 0;
 
        // strData = strData + getStringDataToSave(_BuildingData._UpgradeSystem.Upgrades);
        // strData = strData + getStringDataToSave(_BuildingData._UpgradeSystem.PercentUpgrades) + ":";
 
-        strData += ":";
+        strData += ";";
         Debug.Log("BUILD DATA: " + strData);
 
         return strData;
@@ -45,7 +48,7 @@ public class BuildingDataPacker : DataPacker {
         string strData = "";
         foreach (BasicUpgrade Upgrade in _BasicUpgrade)
         {
-            strData += ":" + Upgrade.UpgradeLevel;
+            strData += ";" + Upgrade.UpgradeLevel;
             Debug.Log("Load string data testL " + Upgrade.UpgradeLevel);
         }
 
@@ -60,7 +63,7 @@ public class BuildingDataPacker : DataPacker {
         for(int i = 0; i < Data.Length; i++)
         {
             string tmp_Data = Data.Substring(i, 1);
-            if (tmp_Data == ":")
+            if (tmp_Data == ";")
             {
                 ChainData.Add(DataPart);
                 DataPart = "";
@@ -80,6 +83,14 @@ public class BuildingDataPacker : DataPacker {
         _Building.PlaceToGrid.Row = int.Parse(ChainData[2]);
         if (Convert.ToBoolean(int.Parse(ChainData[3])) == true) _Building.PlaceToGrid.MirrorScale();
 
+        if (ChainData[4].Length > 1)
+        {
+            _Building._Building.InConstruction.Date = DateTime.Parse(ChainData[4]);
+            _Building._Building.InConstruction.active = true;
+            _Building._Building.InConstruction.Reload();
+        }
+        else _Building._Building.InConstruction.active = false;
+
         //for (int i = 0; i < _Building._UpgradeSystem.Upgrades.Count; i++, index++)
         //{
         //    _Building._UpgradeSystem.Upgrades[i].UpgradeLevel = Convert.ToInt32(ChainData[index]);
@@ -95,4 +106,4 @@ public class BuildingDataPacker : DataPacker {
 }
 
 
-//UP_Speed : UP_HitPoints : ProgressProdction : UP_Capacity : Upgrade_LEVEL
+//UP_Speed ; UP_HitPoints ; ProgressProdction ; UP_Capacity ; Upgrade_LEVEL

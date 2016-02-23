@@ -26,6 +26,7 @@ public abstract class ClickerScene : MonoBehaviour {
     public void goToScene()
     {
         Camera.main.transform.position = new Vector3(transform.position.x, transform.position.y, Camera.main.transform.position.z);
+        Camera.main.GetComponent<ClickController>().Scene = this;
 
         Profil.Resources = new Resource[_Resources.Length];
         _Resources.CopyTo(Profil.Resources, 0);

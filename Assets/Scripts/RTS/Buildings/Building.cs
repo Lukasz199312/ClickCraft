@@ -12,26 +12,22 @@ public abstract class Building : Observe {
     public BuildingType DefaultGrup;
     public int Index;
     public string BuildName;
+    public I_Produce iProduce;
+    public BuildTime InConstruction =  new BuildTime();
 
     public void Start ()
     {
-
+        iProduce = new NormalProduce();
     }
 
     public void Produce()
     {
-        Build_Statistic.ProgressProduction += (((GlobalTimer)subject).RefreshTime / Build_Statistic.Speed ) * Build_Statistic.UP_HitPoints;
-       
-       if(Build_Statistic.ProgressProduction >= ResourceProduction.RequiredHitPoints)
-       {
-           Build_Statistic.ResetProgressProduction(ResourceProduction);
-           ResourceProduction.add(Build_Statistic.UP_Capacity);
-       }
+        iProduce.Start(this);
     }
 
     public void InitializeProduction()
     {
-        Debug.Log("B: " + Build_Statistic.Speed);
+        Debug.Log("B;" + Build_Statistic.Speed);
 
         Build_Statistic.ResetAllStatistic();
         double TotalMilliseconds = ((GlobalTimer)subject).getTimeSpan().TotalMilliseconds;
@@ -49,15 +45,16 @@ public abstract class Building : Observe {
 
         Build_Statistic.ProgressProduction = (double)decimal.Round((decimal)Build_Statistic.ProgressProduction, 2);
 
-        Debug.Log("Czas Poczatkowy: " + ((GlobalTimer)subject).getTimeNow());
-        Debug.Log("Czas od ostatniego uruchomienia: " + ((GlobalTimer)subject).getLastRun());
+        Debug.Log("Czas Poczatkowy; " + ((GlobalTimer)subject).getTimeNow());
+        Debug.Log("Czas od ostatniego uruchomienia; " + ((GlobalTimer)subject).getLastRun());
 
-        Debug.Log("Ticks roznica: " + TotalMilliseconds);
-        Debug.Log("Wynik produkcji : " + result);
+        Debug.Log("Ticks roznica; " + TotalMilliseconds);
+        Debug.Log("Wynik produkcji ; " + result);
         Debug.Log("reszta: " + resultRest);
 
 
     }
+
 
     public virtual void Act(object arg) { }
 }

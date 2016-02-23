@@ -1,20 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Farm : Building {
+public class ConstructionSite : Building {
 
-    void Start()
-    {
+	// Use this for initialization
+	void Start () {
         iProduce = new ConstructionProduce();
-    }
-
+	}
+	
 	// Update is called once per frame
 	void Update () {
 	
 	}
-
-    public override void Act(object arg)
-    {
-        base.Act(arg);
-    }
 }

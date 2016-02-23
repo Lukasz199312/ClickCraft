@@ -9,6 +9,7 @@ public abstract class BasicProfil : MonoBehaviour {
     public Resource[] Resources;
     public Tools Tool;
     public ClickerStatistic _ClickerStatistic;
+    public AutoStatistic _AutoStatistic;
 
     private UpgradeManager Upgrades;
 
