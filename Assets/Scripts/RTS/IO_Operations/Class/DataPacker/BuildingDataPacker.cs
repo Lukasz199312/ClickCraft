@@ -87,7 +87,6 @@ public class BuildingDataPacker : DataPacker {
         {
             _Building._Building.InConstruction.Date = DateTime.Parse(ChainData[4]);
             _Building._Building.InConstruction.active = true;
-            _Building._Building.InConstruction.Reload();
         }
         else _Building._Building.InConstruction.active = false;
 

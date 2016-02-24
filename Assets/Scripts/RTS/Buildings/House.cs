@@ -5,7 +5,11 @@ public class House : Building {
 
 	// Use this for initialization
 	void Start () {
-        if (InConstruction.active == true) iProduce = new ConstructionProduce();
+        if (InConstruction.active == true)
+        {
+            iProduce = new ConstructionProduce();
+            initializeProduce = new InitializeConstructionProduction();
+        }
         else iProduce = new NormalProduce();
 	}
 	

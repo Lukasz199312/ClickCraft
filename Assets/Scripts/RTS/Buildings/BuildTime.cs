@@ -34,4 +34,11 @@ public class BuildTime {
         Date = Date.AddDays(Days);
     }
 
+    public void addMilliseconds(double mili)
+    {
+        Debug.Log("Mili: " + mili);
+        Debug.Log("Before: " + Date);
+        Date = Date.AddMilliseconds(mili);
+        Debug.Log("After: " + Date);
+    }
 }
