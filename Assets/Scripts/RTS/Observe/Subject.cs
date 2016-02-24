@@ -2,13 +2,15 @@
 using System.Collections;
 using System.Collections.Generic;
 
+[System.Serializable]
 public class Subject : MonoBehaviour, I_Subject {
 
+    public int size;
     protected List<I_Observer> Observers = new List<I_Observer>();
 
 	// Use this for initialization
 	void Start () {
-	
+	    size = Observers.Count;
 	}
 	
 	// Update is called once per frame

@@ -5,9 +5,18 @@ public class Farm : Building {
 
     void Start()
     {
-      //  iProduce = new ConstructionProduce();
-        iProduce = new NormalProduce();
-        initializeProduce = new InitializeNormalProduction();
+        if (InConstruction.active == true)
+        {
+            Debug.Log("ACTIVE TEST");
+            iProduce = new ConstructionProduce();
+            initializeProduce = new InitializeConstructionProduction();
+        }
+        else
+        {
+            Debug.Log("FALSE TEST");
+            iProduce = new NormalProduce();
+            initializeProduce = new InitializeNormalProduction();
+        }
     }
 
 	// Update is called once per frame
@@ -15,8 +24,4 @@ public class Farm : Building {
 	
 	}
 
-    public override void Act(object arg)
-    {
-        base.Act(arg);
-    }
 }

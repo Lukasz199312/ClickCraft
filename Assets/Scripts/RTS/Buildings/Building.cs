@@ -16,12 +16,6 @@ public abstract class Building : Observe {
     public I_InitializeProduce initializeProduce;
     public BuildTime InConstruction =  new BuildTime();
 
-    public void Start ()
-    {
-        iProduce = new NormalProduce();
-        initializeProduce = new InitializeNormalProduction();
-    }
-
     public void Produce()
     {
         iProduce.Start(this);
@@ -29,9 +23,24 @@ public abstract class Building : Observe {
 
     public void InitializeProduction()
     {
+        Debug.Log("GameObject: " + gameObject.name + initializeProduce.ToString());
         initializeProduce.InitializeProduction(this);
+        Debug.Log(gameObject.name);
     }
 
-
-    public virtual void Act(object arg) { }
+    public virtual void Initialize()
+    {
+        if (InConstruction.active == true)
+        {
+            Debug.Log("ACTIVE TEST");
+            iProduce = new ConstructionProduce();
+            initializeProduce = new InitializeConstructionProduction();
+        }
+        else
+        {
+            Debug.Log("FALSE TEST");
+            iProduce = new NormalProduce();
+            initializeProduce = new InitializeNormalProduction();
+        }
+    }
 }

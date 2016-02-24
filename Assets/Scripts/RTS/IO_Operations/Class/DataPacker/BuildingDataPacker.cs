@@ -90,6 +90,8 @@ public class BuildingDataPacker : DataPacker {
         }
         else _Building._Building.InConstruction.active = false;
 
+        _Building._Building.Initialize();
+
         //for (int i = 0; i < _Building._UpgradeSystem.Upgrades.Count; i++, index++)
         //{
         //    _Building._UpgradeSystem.Upgrades[i].UpgradeLevel = Convert.ToInt32(ChainData[index]);

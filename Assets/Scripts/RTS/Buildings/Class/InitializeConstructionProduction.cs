@@ -14,7 +14,8 @@ public class InitializeConstructionProduction : I_InitializeProduce {
 
     public void InitializeProduction(Building building)
     {
-        double result = (((GlobalTimer)building.subject).RefreshTime / builder._AutoStatistic.Speed) * builder._AutoStatistic.HitPoints;
-        building.InConstruction.addMilliseconds(result);
+        double TotalMilliseconds = ((GlobalTimer)building.subject).getTimeSpan().TotalMilliseconds;
+        Debug.Log("******************" + TotalMilliseconds);
+        building.InConstruction.addMilliseconds(TotalMilliseconds);
     }
 }

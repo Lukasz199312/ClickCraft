@@ -17,7 +17,8 @@ public class GlobalTimer : Subject {
     }
 
 	// Use this for initialization
-	void Start () {
+    void Start()
+    {
         if (strData.Value != "0") LastRun = DateTime.Parse(strData.Value);
         else LastRun = DateTime.Now;
 
@@ -54,6 +55,9 @@ public class GlobalTimer : Subject {
 
     public TimeSpan getTimeSpan()
     {
+        Debug.Log("LAST RUN: " + LastRun);
+        Debug.Log("Now: " + DateTime.Now);
+
         return new TimeSpan(getTimeNow().Ticks - getLastRun().Ticks);
     }
 }

@@ -18,8 +18,4 @@ public class TownHall : Building {
 	
 	}
 
-    public override void Act(object arg)
-    {
-        base.Act(arg);
-    }
 }
