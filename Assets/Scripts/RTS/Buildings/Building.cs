@@ -18,7 +18,7 @@ public abstract class Building : Observe {
 
     public void Produce()
     {
-        iProduce.Start(this);
+        iProduce.StartProduce(this);
     }
 
     public void InitializeProduction()
@@ -35,6 +35,10 @@ public abstract class Building : Observe {
             Debug.Log("ACTIVE TEST");
             iProduce = new ConstructionProduce();
             initializeProduce = new InitializeConstructionProduction();
+            MoveTimerText moveTimer =  this.gameObject.AddComponent<MoveTimerText>();
+            moveTimer.Initialize();
+
+            ((ConstructionProduce)iProduce).setTimer(moveTimer.getTimer());
         }
         else
         {

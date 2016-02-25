@@ -4,7 +4,7 @@ using System.Collections;
 public class NormalProduce : I_Produce
 {
 
-    public void Start(Building building)
+    public void StartProduce(Building building)
     {
         building.Build_Statistic.ProgressProduction += (((GlobalTimer)building.subject).RefreshTime / building.Build_Statistic.Speed) * building.Build_Statistic.UP_HitPoints;
 

@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ConstructionProduce : I_Produce {
+public class ConstructionProduce : I_Produce
+{
     private Builder builder;
+    private DisplayTimer Timer;
 
     public ConstructionProduce()
     {
@@ -11,10 +13,17 @@ public class ConstructionProduce : I_Produce {
         else Debug.LogError("Cant Find Builder");
     }
 
-    public void Start(Building building)
+    public void StartProduce(Building building)
     {
         double result = (((GlobalTimer)building.subject).RefreshTime / builder._AutoStatistic.Speed) * builder._AutoStatistic.HitPoints;
         building.InConstruction.addMilliseconds(result);
 
+        Timer.TimetText.text = building.InConstruction.Date.ToString();
+
+    }
+
+    public void setTimer(DisplayTimer Timer)
+    {
+        this.Timer = Timer;
     }
 }
