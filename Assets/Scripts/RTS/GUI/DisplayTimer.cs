@@ -17,8 +17,8 @@ public class DisplayTimer : MonoBehaviour {
 	
 	}
 
-    public void setTime(DateTime date)
+    public void setTime(TimeSpan date)
     {
-        TimetText.text = "";
+        TimetText.text = TimerFormat.getFullTime(date);
     }
 }

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class ConstructionProduce : I_Produce
 {
@@ -15,10 +16,17 @@ public class ConstructionProduce : I_Produce
 
     public void StartProduce(Building building)
     {
-        double result = (((GlobalTimer)building.subject).RefreshTime / builder._AutoStatistic.Speed) * builder._AutoStatistic.HitPoints;
-        building.InConstruction.addMilliseconds(result);
+        building.InConstruction.SubtractMilliseconds(((GlobalTimer)building.subject).RefreshTime);
 
-        Timer.TimetText.text = building.InConstruction.Date.ToString();
+        Timer.setTime(building.InConstruction.span);
+
+        if(building.InConstruction.span.TotalSeconds <= 0 )
+        {
+            building.GetComponent<MoveTimerText>().Remove();
+            building.iProduce = building.GetDefaultProduce();
+            building.InConstruction.active = false;
+
+        }
 
     }
 

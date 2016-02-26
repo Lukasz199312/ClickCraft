@@ -49,4 +49,12 @@ public class MoveTimerText : MonoBehaviour {
     {
         return Timer;
     }
+
+    public void Remove()
+    {
+        Timer.gameObject.SetActive(false);
+        Destroy(Timer);
+        Destroy(this);
+
+    }
 }

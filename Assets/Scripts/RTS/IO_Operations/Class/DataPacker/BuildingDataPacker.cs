@@ -31,14 +31,18 @@ public class BuildingDataPacker : DataPacker {
         strData = strData + _BuildingData.PlaceToGrid.Col + ";" + _BuildingData.PlaceToGrid.Row + ";";
         strData = strData + Convert.ToInt32(_BuildingData.PlaceToGrid.scale) + ";" ;
 
-        if (_BuildingData._Building.InConstruction.active == true) strData = strData + _BuildingData._Building.InConstruction.Date;
+        if (_BuildingData._Building.InConstruction.active == true)
+        {
+            if (_BuildingData._Building.InConstruction.span.TotalSeconds == 0) _BuildingData._Building.InConstruction.FirstInitialize();
+            strData = strData + _BuildingData._Building.InConstruction.span;
+        }
         else strData = strData + 0;
 
        // strData = strData + getStringDataToSave(_BuildingData._UpgradeSystem.Upgrades);
        // strData = strData + getStringDataToSave(_BuildingData._UpgradeSystem.PercentUpgrades) + ":";
 
         strData += ";";
-        Debug.Log("BUILD DATA: " + strData);
+       // Debug.Log("BUILD DATA: " + strData);
 
         return strData;
     }
@@ -85,7 +89,7 @@ public class BuildingDataPacker : DataPacker {
 
         if (ChainData[4].Length > 1)
         {
-            _Building._Building.InConstruction.Date = DateTime.Parse(ChainData[4]);
+            _Building._Building.InConstruction.span = TimeSpan.Parse(ChainData[4]);
             _Building._Building.InConstruction.active = true;
         }
         else _Building._Building.InConstruction.active = false;

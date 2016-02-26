@@ -16,6 +16,6 @@ public class InitializeConstructionProduction : I_InitializeProduce {
     {
         double TotalMilliseconds = ((GlobalTimer)building.subject).getTimeSpan().TotalMilliseconds;
         Debug.Log("******************" + TotalMilliseconds);
-        building.InConstruction.addMilliseconds(TotalMilliseconds);
+        building.InConstruction.SubtractMilliseconds(TotalMilliseconds);
     }
 }

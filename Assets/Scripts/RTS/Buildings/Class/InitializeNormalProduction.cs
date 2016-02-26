@@ -8,8 +8,6 @@ public class InitializeNormalProduction : I_InitializeProduce {
         BuildingStatistic Build_Statistic = building.Build_Statistic;
         Resource ResourceProduction = building.ResourceProduction;
 
-        Debug.Log("B;" + Build_Statistic.Speed);
-
         Build_Statistic.ResetAllStatistic();
         double TotalMilliseconds = ((GlobalTimer)building.subject).getTimeSpan().TotalMilliseconds;
 
@@ -26,11 +24,11 @@ public class InitializeNormalProduction : I_InitializeProduce {
 
         Build_Statistic.ProgressProduction = (double)decimal.Round((decimal)Build_Statistic.ProgressProduction, 2);
 
-        Debug.Log("Czas Poczatkowy; " + ((GlobalTimer)building.subject).getTimeNow());
-        Debug.Log("Czas od ostatniego uruchomienia; " + ((GlobalTimer)building.subject).getLastRun());
+       // Debug.Log("Czas Poczatkowy; " + ((GlobalTimer)building.subject).getTimeNow());
+       // Debug.Log("Czas od ostatniego uruchomienia; " + ((GlobalTimer)building.subject).getLastRun());
 
-        Debug.Log("Ticks roznica; " + TotalMilliseconds);
-        Debug.Log("Wynik produkcji ; " + result);
-        Debug.Log("reszta: " + resultRest);
+       // Debug.Log("Ticks roznica; " + TotalMilliseconds);
+      //  Debug.Log("Wynik produkcji ; " + result);
+       // Debug.Log("reszta: " + resultRest);
     }
 }

@@ -23,28 +23,28 @@ public abstract class Building : Observe {
 
     public void InitializeProduction()
     {
-        Debug.Log("GameObject: " + gameObject.name + initializeProduce.ToString());
         initializeProduce.InitializeProduction(this);
-        Debug.Log(gameObject.name);
     }
 
     public virtual void Initialize()
     {
         if (InConstruction.active == true)
         {
-            Debug.Log("ACTIVE TEST");
             iProduce = new ConstructionProduce();
             initializeProduce = new InitializeConstructionProduction();
             MoveTimerText moveTimer =  this.gameObject.AddComponent<MoveTimerText>();
             moveTimer.Initialize();
-
             ((ConstructionProduce)iProduce).setTimer(moveTimer.getTimer());
         }
         else
         {
-            Debug.Log("FALSE TEST");
             iProduce = new NormalProduce();
             initializeProduce = new InitializeNormalProduction();
         }
+    }
+
+    public virtual I_Produce GetDefaultProduce()
+    {
+        return new NormalProduce();
     }
 }
