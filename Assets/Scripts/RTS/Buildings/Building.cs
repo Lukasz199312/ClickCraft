@@ -18,7 +18,7 @@ public abstract class Building : Observe {
 
     void Start()
     {
-
+       
     }
 
     public void Produce()
@@ -40,6 +40,9 @@ public abstract class Building : Observe {
             MoveTimerText moveTimer =  this.gameObject.AddComponent<MoveTimerText>();
             moveTimer.Initialize();
             ((ConstructionProduce)iProduce).setTimer(moveTimer.getTimer());
+
+            
+            //GetComponent<TouchedObject>().BuildingActionGUI = tmpBuildActionGui;
         }
         else
         {
