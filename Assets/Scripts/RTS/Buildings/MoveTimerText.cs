@@ -4,6 +4,7 @@ using System.Collections;
 public class MoveTimerText : MonoBehaviour {
 
     private DisplayTimer Timer;
+    private RectTransform rect;
 
 	// Use this for initialization
 	void Start () {
@@ -30,6 +31,8 @@ public class MoveTimerText : MonoBehaviour {
             RectTransform rect = Timer.GetComponent<RectTransform>();
             RectTransform rectorgi = displaytimer.GetComponent<RectTransform>();
 
+            this.rect = rect;
+
             rect.offsetMin = new Vector2(rectorgi.offsetMin.x, rectorgi.offsetMin.y);
             rect.offsetMax = new Vector2(rectorgi.offsetMax.x, rectorgi.offsetMax.y);
 
@@ -52,6 +55,8 @@ public class MoveTimerText : MonoBehaviour {
     {
         Vector3 screenPos = Camera.main.WorldToScreenPoint(new Vector3( transform.position.x, transform.position.y, transform.position.z));
         Timer.transform.position = new Vector3(screenPos.x, screenPos.y, screenPos.z);
+
+        AnchorOpertion.SetAnchor(rect);
     }
 
     public DisplayTimer getTimer()
