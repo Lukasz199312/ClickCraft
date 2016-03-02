@@ -9,6 +9,7 @@ public class GlobalTimer : Subject {
     private StringData strData;
     private DateTime LastRefresh;
     private DateTime LastRun;
+    private bool FirsTime = false;
 
     void Awake()
     {
@@ -23,6 +24,7 @@ public class GlobalTimer : Subject {
         else LastRun = DateTime.Now;
 
         AdviseAll(new Initialize_Time_Behavior());
+        FirsTime = true;
 	}
 	
 	// Update is called once per frame
@@ -60,4 +62,15 @@ public class GlobalTimer : Subject {
 
         return new TimeSpan(getTimeNow().Ticks - getLastRun().Ticks);
     }
+
+    void OnApplicationPause(bool pauseStatus)
+    {
+        if (pauseStatus == false && FirsTime == true)
+        {
+            LastRun = DateTime.Parse(strData.Value);
+            AdviseAll(new Initialize_Time_Behavior());
+        }
+    }
+
+
 }

@@ -12,8 +12,12 @@ public class IO_Operations : Subject{
 
     void OnApplicationPause(bool pauseStatus)
     {
-        AdviseAll(new IO_SaveBehavior());
-        IO_Basic.SaveAll();
+        if(pauseStatus == true)
+        {
+            AdviseAll(new IO_SaveBehavior());
+            IO_Basic.SaveAll();
+        }
+
     }
 
 

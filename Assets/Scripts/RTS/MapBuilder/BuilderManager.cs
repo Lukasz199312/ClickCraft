@@ -186,6 +186,8 @@ public class BuilderManager : MonoBehaviour {
         FirstObjectPosition.Col = BuildObjectPlacingToGrid.Col;
         FirstObjectPosition.Row = BuildObjectPlacingToGrid.Row;
         FirstObjectPosition.scale = BuildObjectPlacingToGrid.scale;
+
+
     }
 
 
