@@ -244,6 +244,7 @@ public class BuilderManager : MonoBehaviour {
             build.InConstruction.active = true;
             build.InConstruction.FirstInitialize();
             build.Initialize();
+            build.Produce();
 
             BuildObjectSprite.gameObject.SetActive(false);
             placetogrid.scale = BuildObjectPlacingToGrid.scale;
