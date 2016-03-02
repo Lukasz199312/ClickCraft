@@ -241,6 +241,10 @@ public class BuilderManager : MonoBehaviour {
                                                      BuildObjectPlacingToGrid.transform.localScale.y,
                                                      build.transform.localScale.z);
 
+            build.InConstruction.active = true;
+            build.InConstruction.FirstInitialize();
+            build.Initialize();
+
             BuildObjectSprite.gameObject.SetActive(false);
             placetogrid.scale = BuildObjectPlacingToGrid.scale;
         }

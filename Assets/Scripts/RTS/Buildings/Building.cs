@@ -16,6 +16,11 @@ public abstract class Building : Observe {
     public I_InitializeProduce initializeProduce;
     public BuildTime InConstruction =  new BuildTime();
 
+    void Start()
+    {
+
+    }
+
     public void Produce()
     {
         iProduce.StartProduce(this);
@@ -47,4 +52,6 @@ public abstract class Building : Observe {
     {
         return new NormalProduce();
     }
+
+
 }

@@ -20,10 +20,19 @@ public class MoveTimerText : MonoBehaviour {
         GameObject ob = GameObject.Find("TIMER_PLACE");
         if (ob != null)
         {
-            Timer = Instantiate<DisplayTimer>(ob.transform.GetChild(0).GetComponent<DisplayTimer>());
+            DisplayTimer displaytimer = ob.transform.GetChild(0).GetComponent<DisplayTimer>();
+
+            Timer = Instantiate<DisplayTimer>(displaytimer);
             Timer.transform.parent = ob.gameObject.transform;
             Timer.name += "-" + gameObject.name;
             Timer.transform.localScale = new Vector3(1, 1, 1);
+
+            RectTransform rect = Timer.GetComponent<RectTransform>();
+            RectTransform rectorgi = displaytimer.GetComponent<RectTransform>();
+
+            rect.offsetMin = new Vector2(rectorgi.offsetMin.x, rectorgi.offsetMin.y);
+            rect.offsetMax = new Vector2(rectorgi.offsetMax.x, rectorgi.offsetMax.y);
+
 
         }
         else Debug.LogError("Cant Find TIMER_TEXT");
