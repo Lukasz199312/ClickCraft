@@ -23,8 +23,8 @@ public class ProfilerGUI_Action : MonoBehaviour {
 
     public void ActionClick()
     {
-        Scene.goToScene();
         Scene.SetBuild(Build);
+        Scene.goToScene();
     }
 
 }

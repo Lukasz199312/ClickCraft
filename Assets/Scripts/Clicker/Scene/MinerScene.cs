@@ -2,7 +2,8 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class BuildScene : ClickerScene {
+public class MinerScene : ClickerScene
+{
 
 	// Update is called once per frame
 	void Update () {
@@ -41,7 +42,7 @@ public class BuildScene : ClickerScene {
     public override void InitializeObjectPool(Sprite sprite)
     {
         pManager.getObjectPool();
-        
+
         ObjectPool[] ObjectPooling = new ObjectPool[pManager.getPoolingList().Length - 1];
         ObjectPooling = pManager.getPoolingList();
 
@@ -49,12 +50,6 @@ public class BuildScene : ClickerScene {
         {
             ObjectPooling[i].setTexture(sprite);
         }
-    }
-
-    public override void InitializeResource()
-    {
-        Profil.Resources = new I_Resource[1];
-        Profil.Resources[0] = Build.InConstruction;
     }
 
 }

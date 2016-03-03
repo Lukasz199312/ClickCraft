@@ -6,7 +6,7 @@ using System.Collections.Generic;
 public abstract class BasicProfil : MonoBehaviour {
     
     [System.NonSerialized]
-    public Resource[] Resources;
+    public I_Resource[] Resources;
     public Tools Tool;
     public ClickerStatistic _ClickerStatistic;
     public AutoStatistic _AutoStatistic;
@@ -36,7 +36,7 @@ public abstract class BasicProfil : MonoBehaviour {
         Upgrades.AutoUpgrades.ReloadUpdates();
     }
 
-    public Resource[] getResources()
+    public I_Resource[] getResources()
     {
         return this.Resources;
     }

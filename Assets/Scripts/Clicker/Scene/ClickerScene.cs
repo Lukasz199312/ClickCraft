@@ -29,10 +29,9 @@ public abstract class ClickerScene : MonoBehaviour {
         Camera.main.transform.position = new Vector3(transform.position.x, transform.position.y, Camera.main.transform.position.z);
         Camera.main.GetComponent<ClickController>().Scene = this;
 
-        Profil.Resources = new Resource[_Resources.Length];
-        _Resources.CopyTo(Profil.Resources, 0);
+        InitializeResource();
 
-        InitializeObjectPool(Profil.Resources[0].sprite);
+        InitializeObjectPool(Profil.Resources[0].getSprite());
     }
 
     public Vector3 GenerateNewPosition()
@@ -48,6 +47,12 @@ public abstract class ClickerScene : MonoBehaviour {
     public abstract void ClickActionCric(int value, Sprite sprite);
 
     public abstract void InitializeObjectPool(Sprite sprite);
+
+    public virtual void InitializeResource()
+    {
+        Profil.Resources = new Resource[_Resources.Length];
+        _Resources.CopyTo(Profil.Resources, 0);
+    }
 
     public void SetBuild(Building Build)
     {

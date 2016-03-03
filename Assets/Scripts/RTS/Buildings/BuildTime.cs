@@ -3,7 +3,7 @@ using System.Collections;
 using System;
 
 [System.Serializable]
-public class BuildTime {
+public class BuildTime : I_Resource {
 
     public DateTime Date = DateTime.Now;
     public TimeSpan span;
@@ -12,8 +12,11 @@ public class BuildTime {
     public int Minutes;
     public int Hours;
     public int Days;
+    public float DropChance = 1;
 
     public bool active;
+
+    private Sprite sprite;
 
     public void Reload()
     {
@@ -62,5 +65,35 @@ public class BuildTime {
         //Date = Date.AddMilliseconds(mili);
         span = span.Subtract(new TimeSpan(0, 0, 0, 0, (int)mili));
         // Debug.Log("After: " + Date);
+    }
+
+    public void SubtractSeconds(double sec)
+    {
+        //Debug.Log("Mili: " + mili);
+        // Debug.Log("Before: " + Date);
+        //Date = Date.AddMilliseconds(mili);
+        span = span.Subtract(new TimeSpan(0, 0, 0, (int)sec, 0));
+        // Debug.Log("After: " + Date);
+    }
+
+    public void add(int value)
+    {
+        SubtractSeconds(value);
+    }
+
+    public void setSprite(Sprite sprite)
+    {
+        this.sprite = sprite;
+    }
+
+    public Sprite getSprite()
+    {
+        return sprite;
+    }
+
+
+    public float getDropChance()
+    {
+        return DropChance;
     }
 }

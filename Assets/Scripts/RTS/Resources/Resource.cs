@@ -2,7 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class Resource : MonoBehaviour {
+public class Resource : MonoBehaviour, I_Resource {
 
     public SimpleData Value;
     public float RequiredHitPoints;
@@ -34,5 +34,20 @@ public class Resource : MonoBehaviour {
     public void subtract(int value)
     {
         Value.Value = Value.Value - value;
+    }
+
+    public void setSprite(Sprite sprite)
+    {
+        this.sprite = sprite;
+    }
+
+    public Sprite getSprite()
+    {
+        return sprite;
+    }
+
+    float I_Resource.getDropChance()
+    {
+        return DropChance;
     }
 }
