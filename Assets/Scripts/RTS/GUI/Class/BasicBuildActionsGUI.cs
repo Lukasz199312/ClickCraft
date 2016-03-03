@@ -8,6 +8,7 @@ public abstract class BasicBuildActionsGUI : MonoBehaviour {
     public PreviewGUI_Action Preview;
     public TransferGUI_Action Transfer;
     public UpgradesGUI_Action Upgrades;
+    public ProfilerGUI_Action Profiler;
     public GameObject ShopMenu;
     public GameObject CategoryMenu;
     public Button button;
@@ -19,6 +20,7 @@ public abstract class BasicBuildActionsGUI : MonoBehaviour {
     public abstract void InitializePreview();
     public abstract void InitializeTranfer();
     public abstract void InitializeUpgrades();
+    public abstract void InitializeProfiler();
 
     public void setTouchedObject(TouchedObject TObject)
     {
@@ -31,6 +33,7 @@ public abstract class BasicBuildActionsGUI : MonoBehaviour {
         InitializePreview();
         InitializeTranfer();
         InitializeUpgrades();
+        InitializeProfiler();
 
     }
 

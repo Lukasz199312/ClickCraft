@@ -10,6 +10,7 @@ public abstract class ClickerScene : MonoBehaviour {
 
     private float ScreenWidth;
     private float ScreenHeight;
+    protected Building Build;
 
 	// Use this for initialization
 	void Start () {
@@ -47,4 +48,9 @@ public abstract class ClickerScene : MonoBehaviour {
     public abstract void ClickActionCric(int value, Sprite sprite);
 
     public abstract void InitializeObjectPool(Sprite sprite);
+
+    public void SetBuild(Building Build)
+    {
+        this.Build = Build;
+    }
 }

@@ -33,5 +33,8 @@ public class BuildActionsGUI : BasicBuildActionsGUI {
        
     }
 
-
+    public override void InitializeProfiler()
+    {
+        Profiler.Initialize(_TouchedObject.GetComponent<Building>());
+    }
 }
