@@ -35,4 +35,11 @@ public class ConstructionProduce : I_Produce
     {
         this.Timer = Timer;
     }
+
+    public DisplayTimer getTimer()
+    {
+        return Timer;
+    }
+
+ 
 }

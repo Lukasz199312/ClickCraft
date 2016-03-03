@@ -4,9 +4,12 @@ using System.Collections;
 
 public class BuildScene : ClickerScene {
 
+    public DisplayTimer Timer;
+
 	// Update is called once per frame
 	void Update () {
-        
+
+        Timer.setTime(Build.InConstruction.span);
 	}
 
     public override void ClickAction(int value)
