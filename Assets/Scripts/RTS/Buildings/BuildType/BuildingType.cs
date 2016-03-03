@@ -8,6 +8,7 @@ public abstract class BuildingType : MonoBehaviour {
 
     public List<Building> Builds;
     public Building _Buildnig;
+    public int MaxBuilding;
 
     private string BuildTypeName = "";
     //private List<Upgrade> UpgradesList;
@@ -24,6 +25,7 @@ public abstract class BuildingType : MonoBehaviour {
 
     public Building AddBuild()
     {
+        if (Builds.Count > MaxBuilding) return null;
         // DO WYDZIELENIA DO OSOBNEK KLASY
         Building newBuilding = (Building)Instantiate(this._Buildnig);
         Builds.Add(newBuilding);
@@ -39,6 +41,7 @@ public abstract class BuildingType : MonoBehaviour {
 
     public Building AddBuild(Vector3 Position)
     {
+        if (Builds.Count > MaxBuilding) return null;
         // DO WYDZIELENIA DO OSOBNEK KLASY
         Building newBuilding = (Building)Instantiate(this._Buildnig);
         Builds.Add(newBuilding);
@@ -101,6 +104,12 @@ public abstract class BuildingType : MonoBehaviour {
         Builds.Remove(Build);
 
         
+    }
+
+    public bool isLimitStatusAvalible()
+    {
+        if (Builds.Count > MaxBuilding) return false;
+        else return true;
     }
 
 

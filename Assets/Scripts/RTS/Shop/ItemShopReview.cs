@@ -51,11 +51,15 @@ public class ItemShopReview : MonoBehaviour {
                     break;
             }
 
+
             ItemShopSlot[i].gameObject.SetActive(true);
             ItemShopSlot[i].text.text = StuffList[ItemIndex + i].name;
            
             ItemShopSlot[i].Slot_Image.sprite = StuffList[ItemIndex + i].Sprite.sprite;
             ItemShopSlot[i].ShopItem = StuffList[ItemIndex + i];
+
+            if (StuffList[ItemIndex + i].DefaultGroup.isLimitStatusAvalible() == false) ItemShopSlot[i].LockItem();
+            else ItemShopSlot[i].UnlockItem();
         }
     }
 

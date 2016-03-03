@@ -3,6 +3,8 @@ using System.Collections;
 
 public class HouseType : BuildingType {
 
+    public int NumberPersonOnHuse = 1;
+
 	// Use this for initialization
 	void Start () {
 	    
@@ -12,4 +14,5 @@ public class HouseType : BuildingType {
 	void Update () {
 	
 	}
+
 }
