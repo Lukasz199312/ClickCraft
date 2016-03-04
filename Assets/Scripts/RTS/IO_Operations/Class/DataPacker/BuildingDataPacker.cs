@@ -7,6 +7,8 @@ public class BuildingDataPacker : DataPacker {
 
     public override object Unpack(object ob, object Data)
     {
+        Debug.Log("TEST Load");
+
         if (ob is string == false) throw new System.ArgumentException("Invalid Type");
         if (Data is BuildingData == false) throw new System.ArgumentException("Invalid Type");
 
