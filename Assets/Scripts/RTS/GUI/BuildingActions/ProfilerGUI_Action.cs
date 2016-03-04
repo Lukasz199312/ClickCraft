@@ -3,7 +3,7 @@ using System.Collections;
 
 public class ProfilerGUI_Action : MonoBehaviour {
 
-    public BuildScene Scene;
+    public ClickerScene Scene;
     private Building Build;
 
 	// Use this for initialization
