@@ -1,16 +1,19 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public abstract class ClickerScene : MonoBehaviour {
 
     public PoolingManager pManager;
     public BasicProfil Profil;
-
     public Resource[] _Resources;
+    public Button button;
 
     private float ScreenWidth;
     private float ScreenHeight;
+
     protected Building Build;
+    protected Vector3 OldPosition;
 
 	// Use this for initialization
 	void Start () {
@@ -26,12 +29,28 @@ public abstract class ClickerScene : MonoBehaviour {
 
     public void goToScene()
     {
+        gameObject.SetActive(true);
+
+        OldPosition = new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y, Camera.main.transform.position.z);
         Camera.main.transform.position = new Vector3(transform.position.x, transform.position.y, Camera.main.transform.position.z);
         Camera.main.GetComponent<ClickController>().Scene = this;
 
         InitializeResource();
 
         InitializeObjectPool(Profil.Resources[0].getSprite());
+
+        button.gameObject.SetActive(true);
+        button.onClick.AddListener(() => BackToMap());
+    }
+
+    public void BackToMap()
+    {
+        Camera.main.transform.position = new Vector3(OldPosition.x, OldPosition.y, OldPosition.z);
+        button.gameObject.SetActive(false);
+        button.onClick.RemoveAllListeners();
+
+        gameObject.SetActive(false);
+        Build.GetComponent<TouchedObject>().HideGUI();
     }
 
     public Vector3 GenerateNewPosition()
