@@ -43,7 +43,7 @@ public abstract class ClickerScene : MonoBehaviour {
         button.onClick.AddListener(() => BackToMap());
     }
 
-    public void BackToMap()
+    public virtual void BackToMap()
     {
         Camera.main.transform.position = new Vector3(OldPosition.x, OldPosition.y, OldPosition.z);
         button.gameObject.SetActive(false);

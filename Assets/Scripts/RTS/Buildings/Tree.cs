@@ -3,8 +3,12 @@ using System.Collections;
 
 public class Tree : Building
 {
+    private int TreeCapacity;
+
     void Awake()
     {
+        TreeCapacity = ((TreeType)DefaultGrup).TreeCapacity;
+
         subject.Add(this);
         if (DefaultGrup.name != "Tree")
         {
@@ -17,5 +21,11 @@ public class Tree : Building
 	void Update () {
 
 	}
+
+    public int subCapacty(int Value)
+    {
+        TreeCapacity -= Value;
+        return TreeCapacity;
+    }
 
 }
