@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class IncreaseSpeedBy : BasicUpgrade {
+public class IncreaseHitBy : BasicUpgrade {
 
     public override void UpdateStatus()
     {
         Debug.Log("Aktualizacja stanu: " + gameObject.name);
-        _BuildingStatistic.UP_Speed += Value;
+       Profil._ClickerStatistic.MinHit += (int)(Value / 2);
+       Profil._ClickerStatistic.MaxHit += (int)Value;
     }
 }

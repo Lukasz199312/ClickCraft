@@ -9,13 +9,13 @@ public abstract class BasicUpgrade : MonoBehaviour
     public float Value;
     public float UpgradeValueJump;
 
-    protected BuildingStatistic _BuildingStatistic;
+    protected BasicProfil Profil;
     protected UpgradeSystem _UpgradeSystem;
 
-    public void Initialize(UpgradeSystem _UpgradeSystem, BuildingStatistic _Building)
+    public void Initialize(UpgradeSystem _UpgradeSystem, BasicProfil _Profil)
     {
         this._UpgradeSystem = _UpgradeSystem;
-        _BuildingStatistic = _UpgradeSystem.getBuildingStatistic();
+        Profil = _Profil;
     }
 
     public void UpdateAllUpgradess()

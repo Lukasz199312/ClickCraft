@@ -7,24 +7,28 @@ public class UpgradeSystem : MonoBehaviour{
     public List<BasicUpgrade> Upgrades;
     public List<BasicUpgrade> PercentUpgrades;
 
-    private BuildingStatistic _BuildingStatistic;
+    private BasicProfil Profil;
 
 
 	// Use this for initialization
 	void Awake () {
+        Profil = GetComponent<BasicProfil>();
         SortPercentUpgrades();
+        setProfilStatistic(Profil);
+
+       // UpdateUpgrades(Upgrades);
 	}
-	
-    public BuildingStatistic getBuildingStatistic()
+
+    public BasicProfil getBuildingStatistic()
     {
-        return _BuildingStatistic;
+        return Profil;
     }
 
     public void UpdateUpgrades(List<BasicUpgrade> list)
     {
         IEnumerator<BasicUpgrade> iter = Upgrades.GetEnumerator();
         List<BasicUpgrade> tmpUpgrades = new List<BasicUpgrade>();
-        _BuildingStatistic.ResetAllStatistic();
+        // _BuildingStatistic.ResetAllStatistic(); change to Profil
 
         while (iter.MoveNext())
         {
@@ -74,7 +78,7 @@ public class UpgradeSystem : MonoBehaviour{
             BasicUpgrade _BasicUpgrade = iter.Current;
 
             _BasicUpgrade = Instantiate<BasicUpgrade>(_BasicUpgrade);
-            _BasicUpgrade.Initialize(this, _BuildingStatistic);
+            _BasicUpgrade.Initialize(this, Profil);
             _BasicUpgrade.transform.parent = this.gameObject.transform;
             tmpUpgrades.Add(_BasicUpgrade);
         }
@@ -82,9 +86,9 @@ public class UpgradeSystem : MonoBehaviour{
         
     }
 
-    public void setBuildStatistic(BuildingStatistic bStatistic)
+    public void setProfilStatistic(BasicProfil bStatistic)
     {
-        _BuildingStatistic = bStatistic;
+        Profil = bStatistic;
 
         Upgrades = CopyUpgrades(Upgrades);
         PercentUpgrades = CopyUpgrades(PercentUpgrades);
