@@ -8,15 +8,18 @@ public abstract class BasicProfil : MonoBehaviour {
     [System.NonSerialized]
     public I_Resource[] Resources;
     public Tools Tool;
+
     public ClickerStatistic _ClickerStatistic;
     public AutoStatistic _AutoStatistic;
+
+    private ClickerStatistic OryginalClickerStatistic;
+    private AutoStatistic OryginalAutoStatistic;
 
     private UpgradeManager Upgrades;
 
 	// Use this for initialization
 	void Start () {
         Upgrades = this.gameObject.GetComponent<UpgradeManager>();
-
 	}
 	
 	// Update is called once per frame
@@ -45,4 +48,10 @@ public abstract class BasicProfil : MonoBehaviour {
     {
         return Random.Range(_ClickerStatistic.MinHit, _ClickerStatistic.MaxHit);
     }
+
+    public void InitializeOryginalStatistic()
+    {
+        OryginalClickerStatistic = ClickerStatistic.Copy(_ClickerStatistic);
+    }
+
 }

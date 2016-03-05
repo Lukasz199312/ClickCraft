@@ -13,6 +13,8 @@ public class UpgradeSystem : MonoBehaviour{
 	// Use this for initialization
 	void Awake () {
         Profil = GetComponent<BasicProfil>();
+        Profil.InitializeOryginalStatistic();
+
         SortPercentUpgrades();
         setProfilStatistic(Profil);
 

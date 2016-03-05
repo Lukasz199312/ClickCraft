@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class IncreaseSpeedByPercent : BasicUpgrade
+public class IncreaseHitByPercent : BasicUpgrade
 {
     public override void UpdateStatus()
     {
