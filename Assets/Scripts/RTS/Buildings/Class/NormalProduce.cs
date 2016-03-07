@@ -11,7 +11,7 @@ public class NormalProduce : I_Produce
         if (building.Build_Statistic.ProgressProduction >= building.ResourceProduction.RequiredHitPoints)
         {
             building.Build_Statistic.ResetProgressProduction(building.ResourceProduction);
-            building.ResourceProduction.add(building.Build_Statistic.UP_Capacity);
+            building.ResourceProduction.add((int)building.Build_Statistic.UP_Capacity);
         }
     }
 }

@@ -7,5 +7,6 @@ public class AutoStatistic {
     public float Speed;
     public float HitPoints;
     public double ProgressProduction;
-    public int Capacity;
+    public float Capacity;
+    public float MaxCapacity;
 }

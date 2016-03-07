@@ -7,12 +7,12 @@ public class BuildingStatistic {
     public float Speed;
     public float HitPoints;
     public double ProgressProduction;
-    public int Capacity; // okresla ilosc dodawanych produktow
+    public float Capacity; // okresla ilosc dodawanych produktow
 
     public float UP_Speed;
     public float UP_HitPoints;
     public double UP_ProgressProduction;
-    public int UP_Capacity; 
+    public float UP_Capacity; 
 
     public BuildingStatistic()
     {
