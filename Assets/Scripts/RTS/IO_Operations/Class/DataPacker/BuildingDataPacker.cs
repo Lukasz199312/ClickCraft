@@ -28,7 +28,8 @@ public class BuildingDataPacker : DataPacker {
         BuildingData _BuildingData = (BuildingData)ob;
 
         string strData;
-        strData = _BuildingData._Building.Build_Statistic.ProgressProduction.ToString() + ";";
+        //strData = _BuildingData._Building.Build_Statistic.ProgressProduction.ToString() + ";";
+        strData = Math.Round(_BuildingData._Building.Build_Statistic.ProgressProduction, 2).ToString() + ";";
 
         strData = strData + _BuildingData.PlaceToGrid.Col + ";" + _BuildingData.PlaceToGrid.Row + ";";
         strData = strData + Convert.ToInt32(_BuildingData.PlaceToGrid.scale) + ";" ;
@@ -43,10 +44,16 @@ public class BuildingDataPacker : DataPacker {
        // strData = strData + getStringDataToSave(_BuildingData._UpgradeSystem.Upgrades);
        // strData = strData + getStringDataToSave(_BuildingData._UpgradeSystem.PercentUpgrades) + ":";
 
-        strData += ";";
+        String tmpString = SpecialDataPacker.Pack(_BuildingData);
+
+        if( tmpString == "" )
+        {
+            tmpString = ";";
+        }
+
        // Debug.Log("BUILD DATA: " + strData);
 
-        return strData;
+        return strData += ";" + tmpString;
     }
 
     private string getStringDataToSave(List<BasicUpgrade> _BasicUpgrade)
@@ -96,6 +103,9 @@ public class BuildingDataPacker : DataPacker {
         }
         else _Building._Building.InConstruction.active = false;
 
+        SpecialDataPacker.StartIndex = 5;
+        SpecialDataPacker.Unpack(_Building, ChainData);
+
         _Building._Building.Initialize();
 
         //for (int i = 0; i < _Building._UpgradeSystem.Upgrades.Count; i++, index++)
@@ -110,7 +120,6 @@ public class BuildingDataPacker : DataPacker {
 
   
     }
+
 }
 
-
-//UP_Speed ; UP_HitPoints ; ProgressProdction ; UP_Capacity ; Upgrade_LEVEL

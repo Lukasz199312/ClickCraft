@@ -10,6 +10,10 @@ public class BuildScene : ClickerScene {
 	void Update () {
 
         Timer.setTime(Build.InConstruction.span);
+        if (Build.InConstruction.active == false)
+        {
+            button.onClick.Invoke();
+        }
 	}
 
     public override void ClickAction(int value)

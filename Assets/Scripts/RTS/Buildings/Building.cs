@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System.Collections.Generic;
 /// <summary>
 ///SuperClass representation Building 
 /// </summary>
@@ -15,6 +16,8 @@ public abstract class Building : Observe {
     public I_Produce iProduce;
     public I_InitializeProduce initializeProduce;
     public BuildTime InConstruction =  new BuildTime();
+
+    protected List<I_DataField> IO_DataField = new List<I_DataField>();
 
     void Start()
     {
@@ -56,5 +59,9 @@ public abstract class Building : Observe {
         return new NormalProduce();
     }
 
+    public List<I_DataField> getDataField()
+    {
+        return IO_DataField;
+    }
 
 }

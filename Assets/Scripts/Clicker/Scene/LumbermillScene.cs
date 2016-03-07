@@ -4,9 +4,11 @@ using System.Collections;
 
 public class LumbermillScene : ClickerScene
 {
+    public DisplayTimer Timer;
+
 	// Update is called once per frame
 	void Update () {
-        
+        Timer.TimetText.text = _Resources[0].getValue().ToString();
 	}
 
     public override void ClickAction(int value)
@@ -61,5 +63,12 @@ public class LumbermillScene : ClickerScene
     private void CheckTreeCapacity()
     {
        // if( ((Tree)Build).subCapacty )
+    }
+
+
+    public override void InitializeResource()
+    {
+        Profil.Resources = new I_Resource[1];
+        Profil.Resources[0] = ((Tree)Build).Capacity;
     }
 }

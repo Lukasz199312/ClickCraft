@@ -18,7 +18,7 @@ public class UpgradeSystem : MonoBehaviour{
         SortPercentUpgrades();
         setProfilStatistic(Profil);
 
-       // UpdateUpgrades(Upgrades);
+        UpdateUpgrades(PercentUpgrades);
 	}
 
     public BasicProfil getBuildingStatistic()
@@ -28,7 +28,7 @@ public class UpgradeSystem : MonoBehaviour{
 
     public void UpdateUpgrades(List<BasicUpgrade> list)
     {
-        IEnumerator<BasicUpgrade> iter = Upgrades.GetEnumerator();
+        IEnumerator<BasicUpgrade> iter = list.GetEnumerator();
         List<BasicUpgrade> tmpUpgrades = new List<BasicUpgrade>();
         // _BuildingStatistic.ResetAllStatistic(); change to Profil
 
