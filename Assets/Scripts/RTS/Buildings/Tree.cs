@@ -89,14 +89,14 @@ public class Tree : Building
         }
         else
         {
-            iProduce = new TreeProduce();
-            initializeProduce = new InitializeTreeProduction();
+            iProduce = new NoProduce();
+            initializeProduce = new NoInitializeProduce();
         }
     }
 
     public override I_Produce GetDefaultProduce()
     {
-        return new TreeProduce();
+        return new NoProduce();
     }
 
 }

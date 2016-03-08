@@ -16,6 +16,7 @@ public abstract class Building : Observe {
     public I_Produce iProduce;
     public I_InitializeProduce initializeProduce;
     public BuildTime InConstruction =  new BuildTime();
+    public EmployeeManager Employees = new EmployeeManager();
 
     protected List<I_DataField> IO_DataField = new List<I_DataField>();
 
