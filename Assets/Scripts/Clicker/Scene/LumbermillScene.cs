@@ -8,34 +8,44 @@ public class LumbermillScene : ClickerScene
 
 	// Update is called once per frame
 	void Update () {
-        Timer.TimetText.text = _Resources[0].getValue().ToString();
+        Timer.TimetText.text = ((Tree)Build).Capacity.get().ToString();
+
 	}
 
     public override void ClickAction(int value)
     {
+        value = CheckTreeCapacity(value);
+
         ObjectPool ObjectPooling = pManager.getObjectPool();
         ObjectPooling.SetPosition(GenerateNewPosition());
         ObjectPooling.setText("x" + value.ToString());
+        ((Tree)Build).Capacity.subCapacty(value);
 
         ObjectPooling.gameObject.SetActive(true);
     }
 
     public override void ClickActionSpecial(int value, Sprite sprite)
     {
+        value = CheckTreeCapacity(value);
+
         ObjectPool ObjectPooling = pManager.getSpecialObjectPool();
         ObjectPooling.SetPosition(GenerateNewPosition());
         ObjectPooling.setTexture(sprite);
         ObjectPooling.setText("x" + value.ToString());
+        ((Tree)Build).Capacity.subCapacty(value);
 
         ObjectPooling.gameObject.SetActive(true);
     }
 
     public override void ClickActionCric(int value, Sprite sprite)
     {
+        value = CheckTreeCapacity(value);
+
         ObjectPool ObjectPooling = pManager.getCricObjectPool();
         ObjectPooling.SetPosition(GenerateNewPosition());
         ObjectPooling.setTexture(sprite);
         ObjectPooling.setText("x" + value.ToString());
+        ((Tree)Build).Capacity.subCapacty(value);
 
         ObjectPooling.gameObject.SetActive(true);
     }
@@ -60,15 +70,17 @@ public class LumbermillScene : ClickerScene
         
     }
 
-    private void CheckTreeCapacity()
+    private int CheckTreeCapacity(int Value)
     {
-       // if( ((Tree)Build).subCapacty )
+        if( ((Tree)Build).Capacity.get() - Value  <= 0 )
+        {
+            int tmp;
+            tmp = Value - ((Tree)Build).Capacity.get();
+
+            Value = Value - tmp;
+        }
+
+        return Value;
     }
 
-
-    public override void InitializeResource()
-    {
-        Profil.Resources = new I_Resource[1];
-        Profil.Resources[0] = ((Tree)Build).Capacity;
-    }
 }

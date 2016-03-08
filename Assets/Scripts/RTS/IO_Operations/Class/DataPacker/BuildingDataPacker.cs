@@ -29,7 +29,7 @@ public class BuildingDataPacker : DataPacker {
 
         string strData;
         //strData = _BuildingData._Building.Build_Statistic.ProgressProduction.ToString() + ";";
-        strData = Math.Round(_BuildingData._Building.Build_Statistic.ProgressProduction, 2).ToString() + ";";
+        strData = Math.Round(_BuildingData._Building.Build_Statistic.Capacity, 2).ToString() + ";";
 
         strData = strData + _BuildingData.PlaceToGrid.Col + ";" + _BuildingData.PlaceToGrid.Row + ";";
         strData = strData + Convert.ToInt32(_BuildingData.PlaceToGrid.scale) + ";" ;
@@ -91,7 +91,7 @@ public class BuildingDataPacker : DataPacker {
     {
         int index = 4;
 
-        _Building._Building.Build_Statistic.ProgressProduction = float.Parse(ChainData[0]);
+        _Building._Building.Build_Statistic.Capacity = float.Parse(ChainData[0]);
         _Building.PlaceToGrid.Col = int.Parse(ChainData[1]);
         _Building.PlaceToGrid.Row = int.Parse(ChainData[2]);
         if (Convert.ToBoolean(int.Parse(ChainData[3])) == true) _Building.PlaceToGrid.MirrorScale();

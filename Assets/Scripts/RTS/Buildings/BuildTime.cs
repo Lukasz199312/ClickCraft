@@ -96,4 +96,8 @@ public class BuildTime : I_Resource {
     {
         return DropChance;
     }
+    public int get()
+    {
+        throw new NotImplementedException();
+    }
 }

@@ -50,4 +50,10 @@ public class Resource : MonoBehaviour, I_Resource {
     {
         return DropChance;
     }
+
+
+    public int get()
+    {
+        return (int)Value.Value;
+    }
 }

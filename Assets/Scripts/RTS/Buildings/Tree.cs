@@ -18,10 +18,6 @@ public class TreeCapacity : I_Resource
         Capacity = Value;
     }
 
-    public int get()
-    {
-        return Capacity;
-    }
 
     public int subCapacty(int Value)
     {
@@ -49,6 +45,10 @@ public class TreeCapacity : I_Resource
         return DropChance;
     }
 
+    public int get()
+    {
+        return Capacity;
+    }
 }
 
 public class Tree : Building

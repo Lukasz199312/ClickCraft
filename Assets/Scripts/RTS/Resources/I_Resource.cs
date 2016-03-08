@@ -7,4 +7,5 @@ public interface I_Resource
     void setSprite(Sprite sprite);
     Sprite getSprite();
     float getDropChance();
+    int get();
 }

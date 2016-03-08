@@ -77,4 +77,5 @@ public abstract class ClickerScene : MonoBehaviour {
     {
         this.Build = Build;
     }
+
 }
