@@ -44,7 +44,6 @@ public abstract class Building : Observe {
             MoveTimerText moveTimer =  this.gameObject.AddComponent<MoveTimerText>();
             moveTimer.Initialize();
             ((ConstructionProduce)iProduce).setTimer(moveTimer.getTimer());
-
             
             //GetComponent<TouchedObject>().BuildingActionGUI = tmpBuildActionGui;
         }
@@ -63,6 +62,12 @@ public abstract class Building : Observe {
     public List<I_DataField> getDataField()
     {
         return IO_DataField;
+    }
+
+    public void AddEmployee()
+    {
+        if (HumanResource.getCount() <= 0) return;
+        Employees.add(Employees);
     }
 
 }

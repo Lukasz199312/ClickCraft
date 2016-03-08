@@ -3,19 +3,18 @@ using System.Collections.Generic;
 
 public class Employee
 {
-    public Building Owner;
-    public Building WorkPlace;
+    public EmployeeManager Owner;
+    public EmployeeManager WorkPlace;
 
-    public Employee(Building _Owner, Building _WorkPlace)
+    public Employee(EmployeeManager _Owner, EmployeeManager _WorkPlace)
     {
         Owner = _Owner;
         WorkPlace = _WorkPlace;
     }
 
-    public Employee(Building _Owner)
+    public Employee(EmployeeManager _Owner)
     {
         Owner = _Owner;
     }
 
 }
-
