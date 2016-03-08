@@ -16,31 +16,37 @@ public class BuildScene : ClickerScene {
         }
 	}
 
-    public override void ClickAction(int value)
+    public override void ClickAction(int value, I_Resource res)
     {
         ObjectPool ObjectPooling = pManager.getObjectPool();
         ObjectPooling.SetPosition(GenerateNewPosition());
         ObjectPooling.setText("x" + value.ToString());
 
+        res.add(value);
+
         ObjectPooling.gameObject.SetActive(true);
     }
 
-    public override void ClickActionSpecial(int value, Sprite sprite)
+    public override void ClickActionSpecial(int value, Sprite sprite, I_Resource res)
     {
         ObjectPool ObjectPooling = pManager.getSpecialObjectPool();
         ObjectPooling.SetPosition(GenerateNewPosition());
         ObjectPooling.setTexture(sprite);
         ObjectPooling.setText("x" + value.ToString());
 
+        res.add(value);
+
         ObjectPooling.gameObject.SetActive(true);
     }
 
-    public override void ClickActionCric(int value, Sprite sprite)
+    public override void ClickActionCric(int value, Sprite sprite, I_Resource res)
     {
         ObjectPool ObjectPooling = pManager.getCricObjectPool();
         ObjectPooling.SetPosition(GenerateNewPosition());
         ObjectPooling.setTexture(sprite);
         ObjectPooling.setText("x" + value.ToString());
+
+        res.add(value);
 
         ObjectPooling.gameObject.SetActive(true);
     }

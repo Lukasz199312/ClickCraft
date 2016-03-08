@@ -61,9 +61,9 @@ public abstract class ClickerScene : MonoBehaviour {
         return new Vector3(x, y, this.transform.position.z + 50);
     }
 
-    public abstract void ClickAction(int value);
-    public abstract void ClickActionSpecial(int value, Sprite sprite);
-    public abstract void ClickActionCric(int value, Sprite sprite);
+    public abstract void ClickAction(int value , I_Resource res);
+    public abstract void ClickActionSpecial(int value, Sprite sprite, I_Resource res);
+    public abstract void ClickActionCric(int value, Sprite sprite, I_Resource res);
 
     public abstract void InitializeObjectPool(Sprite sprite);
 

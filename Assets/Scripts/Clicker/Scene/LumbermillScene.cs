@@ -9,10 +9,14 @@ public class LumbermillScene : ClickerScene
 	// Update is called once per frame
 	void Update () {
         Timer.TimetText.text = ((Tree)Build).Capacity.get().ToString();
-
+        if( ((Tree)Build).Capacity.get() <= 0)
+        {
+            button.onClick.Invoke();
+            DisplaceGUI_Action.DeleteObject(Build.gameObject);
+        }
 	}
 
-    public override void ClickAction(int value)
+    public override void ClickAction(int value, I_Resource res)
     {
         value = CheckTreeCapacity(value);
 
@@ -21,10 +25,12 @@ public class LumbermillScene : ClickerScene
         ObjectPooling.setText("x" + value.ToString());
         ((Tree)Build).Capacity.subCapacty(value);
 
+        res.add(value);
+
         ObjectPooling.gameObject.SetActive(true);
     }
 
-    public override void ClickActionSpecial(int value, Sprite sprite)
+    public override void ClickActionSpecial(int value, Sprite sprite, I_Resource res)
     {
         value = CheckTreeCapacity(value);
 
@@ -34,10 +40,12 @@ public class LumbermillScene : ClickerScene
         ObjectPooling.setText("x" + value.ToString());
         ((Tree)Build).Capacity.subCapacty(value);
 
+        res.add(value);
+
         ObjectPooling.gameObject.SetActive(true);
     }
 
-    public override void ClickActionCric(int value, Sprite sprite)
+    public override void ClickActionCric(int value, Sprite sprite, I_Resource res)
     {
         value = CheckTreeCapacity(value);
 
@@ -46,6 +54,8 @@ public class LumbermillScene : ClickerScene
         ObjectPooling.setTexture(sprite);
         ObjectPooling.setText("x" + value.ToString());
         ((Tree)Build).Capacity.subCapacty(value);
+
+        res.add(value);
 
         ObjectPooling.gameObject.SetActive(true);
     }

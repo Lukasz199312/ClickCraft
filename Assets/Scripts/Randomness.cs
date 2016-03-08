@@ -30,8 +30,7 @@ public class Randomness {
                         int Value = Scene.Profil.getRandomHitValue();
                         Value = Value + Value * (int)Scene.Profil._ClickerStatistic.CriticalBonus;
 
-                        Resources[i].add(Value);
-                        Scene.ClickActionCric(Value, Resources[i].getSprite());
+                        Scene.ClickActionCric(Value, Resources[i].getSprite(), Resources[i]);
                         Statistic.ClickCric = 0;
                         break;
                     }
@@ -39,8 +38,7 @@ public class Randomness {
                     {
                         int Value = Scene.Profil.getRandomHitValue();
 
-                        Resources[i].add(Value);
-                        Scene.ClickActionSpecial(Value, Resources[i].getSprite());
+                        Scene.ClickActionSpecial(Value, Resources[i].getSprite(), Resources[i]);
                         Statistic.ClickCric++;
                         break;
                     }
@@ -55,16 +53,14 @@ public class Randomness {
                     int Value = Scene.Profil.getRandomHitValue();
                     Value = Value + Value * (int)Scene.Profil._ClickerStatistic.CriticalBonus;
 
-                    Resources[0].add(Value);
-                    Scene.ClickActionCric(Value, Resources[0].getSprite());
+                    Scene.ClickActionCric(Value, Resources[0].getSprite(), Resources[0]);
                     Statistic.ClickCric = 0;
                 }
                 else
                 {
                     int Value = Scene.Profil.getRandomHitValue();
 
-                    Resources[0].add(Value);
-                    Scene.ClickAction(Value);
+                    Scene.ClickAction(Value, Resources[0]);
                     Statistic.ClickCric++;
                 }
 
