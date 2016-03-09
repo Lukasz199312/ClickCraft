@@ -9,6 +9,7 @@ public abstract class BasicBuildActionsGUI : MonoBehaviour {
     public TransferGUI_Action Transfer;
     public UpgradesGUI_Action Upgrades;
     public ProfilerGUI_Action Profiler;
+    public EmployeeGUI Employee;
     public GameObject ShopMenu;
     public GameObject CategoryMenu;
     public Button button;
