@@ -16,14 +16,18 @@ public class TreeProduce : I_Produce
 
     public void StartProduce(Building building)
     {
+        if (building.Employees.getCount() <= 0) return;
+
         if (building.Build_Statistic.Capacity >= Lumber._AutoStatistic.MaxCapacity)
         {
-
+            if (building.Build_Statistic.Capacity > Lumber._AutoStatistic.MaxCapacity)
+                building.Build_Statistic.Capacity = Lumber._AutoStatistic.MaxCapacity;
+            return;
         }
         else
         {
            float result =  (((GlobalTimer)building.subject).RefreshTime / Lumber._AutoStatistic.Speed) * Lumber._AutoStatistic.HitPoints;
-           building.Build_Statistic.Capacity += result;
+           building.Build_Statistic.Capacity += result * building.Employees.getCount();
             ((Tree)building).Capacity.add((int)result);
         }
 

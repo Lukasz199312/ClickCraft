@@ -28,8 +28,8 @@ public class Sawmill : Building {
         }
         else
         {
-            iProduce = new TreeProduce();
-            initializeProduce = new InitializeTreeProduction();
+            iProduce = new NoProduce();
+            initializeProduce = new NoInitializeProduce();
         }
     }
 }

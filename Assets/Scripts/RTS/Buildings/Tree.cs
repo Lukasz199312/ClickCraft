@@ -89,7 +89,7 @@ public class Tree : Building
         }
         else
         {
-            iProduce = new NoProduce();
+            iProduce = new TreeProduce();
             initializeProduce = new NoInitializeProduce();
         }
     }

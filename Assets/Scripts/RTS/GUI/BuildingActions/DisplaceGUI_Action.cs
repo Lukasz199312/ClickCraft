@@ -28,6 +28,7 @@ public class DisplaceGUI_Action : MonoBehaviour {
         Building BuildingObserve = objectgame.GetComponent<Building>();
         BuildingObserve.DefaultGrup.RemoveBuild(BuildingObserve);
         BuildingObserve.subject.Remove(BuildingObserve);
+        
 
         PlacingToGrid place = objectgame.GetComponent<PlacingToGrid>();
         place.RelaseAll();
