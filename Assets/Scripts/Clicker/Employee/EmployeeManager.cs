@@ -5,7 +5,6 @@ using UnityEngine;
 [System.Serializable]
 public class EmployeeManager
 {
-    [SerializeField]
     private int MaxSize;
     private List<Employee> Employees = new List<Employee>();
 
@@ -73,6 +72,16 @@ public class EmployeeManager
     public int getCount()
     {
         return Employees.Count;
+    }
+
+    public void setMaxSize(int Value)
+    {
+        MaxSize = Value;
+    }
+    
+    public int getMaxSize()
+    {
+        return MaxSize;
     }
 
 }

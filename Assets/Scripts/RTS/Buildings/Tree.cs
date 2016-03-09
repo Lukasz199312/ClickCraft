@@ -60,6 +60,7 @@ public class Tree : Building
         IO_DataField.Add(new IO_Capacity() );
 
         Capacity = new TreeCapacity(((TreeType)DefaultGrup).TreeCapacity, ResourceProduction.sprite);
+        Employees.setMaxSize(DefaultGrup.MaxSizeEmployees);
 
         subject.Add(this);
         if (DefaultGrup.name != "Tree")

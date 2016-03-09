@@ -9,6 +9,7 @@ public abstract class BuildingType : MonoBehaviour {
     public List<Building> Builds;
     public Building _Buildnig;
     public int MaxBuilding;
+    public int MaxSizeEmployees;
 
     private string BuildTypeName = "";
     //private List<Upgrade> UpgradesList;
