@@ -9,7 +9,6 @@ public abstract class BasicBuildActionsGUI : MonoBehaviour {
     public TransferGUI_Action Transfer;
     public UpgradesGUI_Action Upgrades;
     public ProfilerGUI_Action Profiler;
-    public EmployeeGUI Employee;
     public GameObject ShopMenu;
     public GameObject CategoryMenu;
     public Button button;
@@ -22,6 +21,8 @@ public abstract class BasicBuildActionsGUI : MonoBehaviour {
     public abstract void InitializeTranfer();
     public abstract void InitializeUpgrades();
     public abstract void InitializeProfiler();
+    public abstract void InitializeExtends();
+    public abstract void DisableExtends();
 
     public void setTouchedObject(TouchedObject TObject)
     {
@@ -35,6 +36,7 @@ public abstract class BasicBuildActionsGUI : MonoBehaviour {
         InitializeTranfer();
         InitializeUpgrades();
         InitializeProfiler();
+        InitializeExtends();
 
     }
 
@@ -47,6 +49,7 @@ public abstract class BasicBuildActionsGUI : MonoBehaviour {
     void OnDisable()
     {
         this.Controller.DisableDoubleTouch = false;
+        DisableExtends();
     }
 
 

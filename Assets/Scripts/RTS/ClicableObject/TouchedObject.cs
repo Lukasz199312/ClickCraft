@@ -3,12 +3,12 @@ using System.Collections;
 
 public class TouchedObject : MonoBehaviour {
 
-    public BuildActionsGUI BuildingActionGUI;
-    public BuildActionsGUI ActionGUIConstruction;
+    public BasicBuildActionsGUI BuildingActionGUI;
+    public BasicBuildActionsGUI ActionGUIConstruction;
     //public UpgradeSystem Upgrades;
     public BuilderManager Builder;
     public PlacingToGrid Placing;
-    private BuildActionsGUI Default;
+    private BasicBuildActionsGUI Default;
 
 	// Use this for initialization
 	void Start () {
@@ -17,7 +17,7 @@ public class TouchedObject : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+	    
 	}
 
     public void ShowGUI()
@@ -27,6 +27,7 @@ public class TouchedObject : MonoBehaviour {
 
         Default.gameObject.SetActive(true);
         Default.setTouchedObject(this);
+
         Default.ReloadData();
         Default.HideShopMenu();
     }

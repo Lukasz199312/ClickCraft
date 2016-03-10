@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class BuildActionsGUI : BasicBuildActionsGUI {
+public class StandardActionsGUI : BasicBuildActionsGUI
+{
 
+    public EmployeeAction EmployeeGUI;
 
 	// Use this for initialization
 	void Start () {
@@ -42,11 +44,12 @@ public class BuildActionsGUI : BasicBuildActionsGUI {
 
     public override void InitializeExtends()
     {
-
+        EmployeeGUI.gameObject.SetActive(true);
+        EmployeeGUI.Initialize(_TouchedObject.GetComponent<Building>());
     }
 
     public override void DisableExtends()
     {
-
+        EmployeeGUI.gameObject.SetActive(false);
     }
 }

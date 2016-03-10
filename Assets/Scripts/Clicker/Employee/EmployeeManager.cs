@@ -5,6 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class EmployeeManager
 {
+    public bool isStandard = true;
     private int MaxSize;
     private List<Employee> Employees = new List<Employee>();
 
