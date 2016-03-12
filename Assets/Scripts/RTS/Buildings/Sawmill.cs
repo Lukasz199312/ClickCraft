@@ -3,11 +3,12 @@ using System.Collections;
 
 public class Sawmill : Building {
 
-    TreeType Trees;
+    public TreeType Trees;
 
     void Awake()
     {
-
+        subject.Add(this);
+        Employees.setMaxSize(DefaultGrup.MaxSizeEmployees);
     }
 	
 	// Update is called once per frame
@@ -28,8 +29,11 @@ public class Sawmill : Building {
         }
         else
         {
-            iProduce = new NoProduce();
-            initializeProduce = new NoInitializeProduce();
+            iProduce = new SawmillProduce();
+            ((SawmillProduce)iProduce).setTreeType(Trees);
+
+            initializeProduce = new InitializeSawmillProduction();
+            ((InitializeSawmillProduction)initializeProduce).setTreeType(Trees);
         }
     }
 }

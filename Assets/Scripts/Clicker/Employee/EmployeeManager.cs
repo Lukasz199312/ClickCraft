@@ -49,8 +49,9 @@ public class EmployeeManager
         if (Employees.Count <= 0) return false;
         if (Employees[Employees.Count - 1].Owner != null) return false;
 
-        Employees[Employees.Count - 1].Owner.add(Employees[Employees.Count - 1].WorkPlace);
+       // Employees[Employees.Count - 1].Owner.add(Employees[Employees.Count - 1].WorkPlace);
         Employees[Employees.Count - 1].WorkPlace.Remove();
+        Employees[Employees.Count - 1].setStatus(false);
         return true;
 
     }

@@ -6,6 +6,7 @@ public class SawmillProduce : I_Produce
 {
     private Lumberjack Lumber;
     private DisplayTimer Timer;
+    private TreeType Trees;
 
     public SawmillProduce()
     {
@@ -16,7 +17,42 @@ public class SawmillProduce : I_Produce
 
     public void StartProduce(Building building)
     {
+        if (isNoEmployees(building)) return;
+
+        IEnumerator iter = Trees.Builds.GetEnumerator();
+
+        while(iter.MoveNext())
+        {
+            Tree tree = (Tree)iter.Current;
+            
+
+
+            if(isTreeEmployeeFull(tree.Employees) == false)
+            {
+                tree.Employees.add(building.Employees, tree.Employees);
+                if (isNoEmployees(building)) return;
+            }
+            
+        }
         
+    }
+
+    private bool isNoEmployees(Building building)
+    {
+        if (building.Employees.getCount() <= 0) return true;
+        else return false;
+    }
+
+    private bool isTreeEmployeeFull(EmployeeManager emplo)
+    {
+        if (emplo.getCount() >= emplo.getMaxSize()) return true;
+        else return false;
+    }
+    
+    private bool isNull(object ob)
+    {
+        if (ob != null) return false;
+        else return true;
     }
 
     public void setTimer(DisplayTimer Timer)
@@ -29,5 +65,9 @@ public class SawmillProduce : I_Produce
         return Timer;
     }
 
+    public void setTreeType(TreeType Tree)
+    {
+        Trees = Tree;
+    }
  
 }
