@@ -27,7 +27,7 @@ public class EmployeeAction : MonoBehaviour {
     }
 
     public void AddEmployee()
-    {
+      {
         build.Employees.add(build.Employees);
         RefresEmployeeStatus();
     }
