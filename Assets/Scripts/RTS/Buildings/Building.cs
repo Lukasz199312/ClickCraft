@@ -22,7 +22,7 @@ public abstract class Building : Observe {
 
     void Start()
     {
-       
+        if (InConstruction.active == false) DefaultInitialize();
     }
 
     public void Produce()
@@ -59,6 +59,7 @@ public abstract class Building : Observe {
         return new NormalProduce();
     }
 
+
     public List<I_DataField> getDataField()
     {
         return IO_DataField;
@@ -67,7 +68,21 @@ public abstract class Building : Observe {
     public void AddEmployee()
     {
         if (HumanResource.getCount() <= 0) return;
-        Employees.add(Employees);
+        Employee.Create(Employees, this);
     }
 
+    public void AddEmployee(int Value)
+    {
+        for(int i=1; i<=Value; i++)
+        {
+            if (HumanResource.getCount() <= 0) return;
+            Employee.Create(Employees, this);
+        }
+    }
+
+
+    public virtual void DefaultInitialize()
+    {
+
+    }
 }

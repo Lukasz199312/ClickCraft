@@ -9,67 +9,47 @@ public class EmployeeManager
     private int MaxSize;
     private List<Employee> Employees = new List<Employee>();
 
-    public bool add(EmployeeManager Owner, EmployeeManager WorkPlace)
+    public void add(Employee emplo)
     {
-        if (Employees.Count >= MaxSize) return false;
-
-        Employees.Add(new Employee(Owner, WorkPlace));
-        return true;
-    }
-
-    public bool add(EmployeeManager WorkPlace)
-    {
-        if (Employees.Count >= MaxSize) return false;
-
+        Employees.Add(emplo);
+        emplo.Owner = this;
         HumanResource.sub();
-        Employees.Add(new Employee(WorkPlace));
-        return true;
     }
 
-    public bool Remove()
+    public void Remove(Employee emplo)
     {
-        if (Employees.Count <= 0) return false;
-
-        HumanResource.add();
-        Employees.RemoveAt(Employees.Count - 1);
-        return true;
+        Employees.Remove(emplo);
     }
 
-    public bool RemoveAll()
+
+    public Employee getLazyEmploye()
     {
-        if (Employees.Count <= 0) return false;
-
-        HumanResource.add(Employees.Count);
-        Employees.Clear();
-        return true;
-    }
-
-    public bool BackToOwner()
-    {
-        if (Employees.Count <= 0) return false;
-        if (Employees[Employees.Count - 1].Owner != null) return false;
-
-       // Employees[Employees.Count - 1].Owner.add(Employees[Employees.Count - 1].WorkPlace);
-        Employees[Employees.Count - 1].WorkPlace.Remove();
-        Employees[Employees.Count - 1].setStatus(false);
-        return true;
-
-    }
-
-    public bool ReleaseAll()
-    {
-        if (Employees.Count <= 0) return false;
         IEnumerator<Employee> iter = Employees.GetEnumerator();
 
         while(iter.MoveNext())
         {
-            Employee emplo = iter.Current;
+            Employee emplo = (Employee)iter.Current;
 
-            emplo.Owner.add(emplo.WorkPlace);
-            emplo.WorkPlace.Remove();
+            if (emplo.Share == false) return emplo;
         }
-        return true;
+
+        return Employees[Employees.Count - 1];
+
     }
+
+    private void Share(Employee emplo)
+    {
+        Employees.Add(emplo);
+        emplo.WorkPlace = this;
+        emplo.Share = true;
+    }
+
+
+    public static void Share(Employee employee, EmployeeManager WorkPlace)
+    {
+        WorkPlace.Share(employee);
+    }
+
 
     public int getCount()
     {
@@ -80,10 +60,15 @@ public class EmployeeManager
     {
         MaxSize = Value;
     }
-    
+
     public int getMaxSize()
     {
         return MaxSize;
+    }
+
+    public List<Employee> getList()
+    {
+        return Employees;
     }
 
 }

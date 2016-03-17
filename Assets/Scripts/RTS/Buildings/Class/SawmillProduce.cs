@@ -24,15 +24,10 @@ public class SawmillProduce : I_Produce
         while(iter.MoveNext())
         {
             Tree tree = (Tree)iter.Current;
+            if (isTreeEmployeeFull(tree.Employees) == true) continue;
+            SendToWork(tree, getLazyEmplo(building));
             
 
-
-            if(isTreeEmployeeFull(tree.Employees) == false)
-            {
-                tree.Employees.add(building.Employees, tree.Employees);
-                if (isNoEmployees(building)) return;
-            }
-            
         }
         
     }
@@ -53,6 +48,22 @@ public class SawmillProduce : I_Produce
     {
         if (ob != null) return false;
         else return true;
+    }
+
+    private Employee getLazyEmplo(Building build)
+    {
+        Employee emplo = build.Employees.getLazyEmploye();
+
+        if (emplo.Share == true) return null;
+        else return emplo;
+    }
+
+    private bool SendToWork(Building build, Employee emplo)
+    {
+        if (emplo == null) return false;
+        EmployeeManager.Share(emplo, build.Employees);
+
+        return true;
     }
 
     public void setTimer(DisplayTimer Timer)

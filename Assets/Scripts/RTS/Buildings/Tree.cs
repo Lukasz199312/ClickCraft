@@ -1,65 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-[System.Serializable]
-public class TreeCapacity : I_Resource
-{
-    private int Capacity;
-    private Sprite sprite;
-    private float DropChance = 1;
-
-    public TreeCapacity(int value, Sprite sprt)
-    {
-        Capacity = value;
-    }
-
-    public void set(int Value)
-    {
-        Capacity = Value;
-    }
-
-
-    public int subCapacty(int Value)
-    {
-        Capacity -= Value;
-        return Capacity;
-    }
-
-    public void add(int value)
-    {
-        subCapacty(value);
-    }
-
-    public void setSprite(Sprite sprite)
-    {
-        this.sprite = sprite;
-    }
-
-    public Sprite getSprite()
-    {
-        return sprite;
-    }
-
-    public float getDropChance()
-    {
-        return DropChance;
-    }
-
-    public int get()
-    {
-        return Capacity;
-    }
-}
-
 public class Tree : Building
 {
-    public TreeCapacity Capacity;
+    public Capacity Capacity;
 
     void Awake()
     {
         IO_DataField.Add(new IO_Capacity() );
 
-        Capacity = new TreeCapacity(((TreeType)DefaultGrup).TreeCapacity, ResourceProduction.sprite);
+        Capacity = new Capacity(((TreeType)DefaultGrup).TreeCapacity, ResourceProduction.sprite);
         Employees.setMaxSize(DefaultGrup.MaxSizeEmployees);
 
         subject.Add(this);
@@ -97,7 +47,7 @@ public class Tree : Building
 
     public override I_Produce GetDefaultProduce()
     {
-        return new NoProduce();
+        return new TreeProduce();
     }
 
 }

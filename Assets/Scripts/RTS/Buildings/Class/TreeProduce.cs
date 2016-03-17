@@ -18,19 +18,30 @@ public class TreeProduce : I_Produce
     {
         if (building.Employees.getCount() <= 0) return;
 
-        if (building.Build_Statistic.Capacity >= Lumber._AutoStatistic.MaxCapacity)
+        foreach (Employee emplo in building.Employees.getList())
         {
-            if (building.Build_Statistic.Capacity > Lumber._AutoStatistic.MaxCapacity)
-                building.Build_Statistic.Capacity = Lumber._AutoStatistic.MaxCapacity;
-            return;
+            if (IsMax(emplo.OwnerBuild) != true) ProduceStaff(building, emplo.OwnerBuild);
+            else StopProduce(emplo.OwnerBuild);
         }
-        else
-        {
-           float result =  (((GlobalTimer)building.subject).RefreshTime / Lumber._AutoStatistic.Speed) * Lumber._AutoStatistic.HitPoints;
-           building.Build_Statistic.Capacity += result * building.Employees.getCount();
-            ((Tree)building).Capacity.add((int)result);
-        }
+    }
 
+    private bool IsMax(Building OwnerBuild)
+    {
+        if (OwnerBuild.Build_Statistic.Capacity >= Lumber._AutoStatistic.MaxCapacity) return true;
+        else return false;
+    }
+
+    private void StopProduce(Building OwnerBuild)
+    {
+        if (OwnerBuild.Build_Statistic.Capacity > Lumber._AutoStatistic.MaxCapacity)
+            OwnerBuild.Build_Statistic.Capacity = Lumber._AutoStatistic.MaxCapacity;
+    }
+
+    private void ProduceStaff(Building WorkBuild, Building OwnerBuild)
+    {
+        float result = (((GlobalTimer)WorkBuild.subject).RefreshTime / Lumber._AutoStatistic.Speed) * Lumber._AutoStatistic.HitPoints;
+        OwnerBuild.Build_Statistic.Capacity += result;
+        ((Tree)WorkBuild).Capacity.add((int)result);
 
     }
 

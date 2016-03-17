@@ -7,12 +7,17 @@ public class House : Building {
     {
         subject.Add(this);
         if (DefaultGrup.name != "House") return;
-        HumanResource.add( ((HouseType)DefaultGrup).NumberPersonOnHuse );
+       
     }
 	
 	// Update is called once per frame
 	void Update () {
 
 	}
+
+    public override void DefaultInitialize()
+    {
+        HumanResource.add(((HouseType)DefaultGrup).NumberPersonOnHuse);
+    }
 
 }

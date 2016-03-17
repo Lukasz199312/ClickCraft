@@ -25,6 +25,7 @@ public class ConstructionProduce : I_Produce
             building.GetComponent<MoveTimerText>().Remove();
             building.iProduce = building.GetDefaultProduce();
             building.InConstruction.active = false;
+            building.DefaultInitialize();
             Debug.Log(building.gameObject.name + " Koniec produkcij");
 
         }

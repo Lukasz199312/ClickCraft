@@ -7,9 +7,13 @@ public class Sawmill : Building {
 
     void Awake()
     {
+        IO_DataField.Add(new IO_EmployeeJob());
+
         subject.Add(this);
         Employees.setMaxSize(DefaultGrup.MaxSizeEmployees);
     }
+
+
 	
 	// Update is called once per frame
 	void Update () {
@@ -36,4 +40,13 @@ public class Sawmill : Building {
             ((InitializeSawmillProduction)initializeProduce).setTreeType(Trees);
         }
     }
+
+    public override I_Produce GetDefaultProduce()
+    {
+        SawmillProduce sawmilproduce = new SawmillProduce();
+        sawmilproduce.setTreeType(Trees);
+
+        return sawmilproduce;
+    }
+
 }
