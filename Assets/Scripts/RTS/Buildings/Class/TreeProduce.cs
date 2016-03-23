@@ -35,6 +35,12 @@ public class TreeProduce : I_Produce
     {
         if (OwnerBuild.Build_Statistic.Capacity > Lumber._AutoStatistic.MaxCapacity)
             OwnerBuild.Build_Statistic.Capacity = Lumber._AutoStatistic.MaxCapacity;
+
+        if (OwnerBuild.InCollectMode == true) return;
+
+        OwnerBuild.gameObject.AddComponent<MoveItemCollect>().Initialize();
+        OwnerBuild.gameObject.GetComponent<TouchedObject>().InitializeAsCollectItem();
+        OwnerBuild.InCollectMode = true;
     }
 
     private void ProduceStaff(Building WorkBuild, Building OwnerBuild)

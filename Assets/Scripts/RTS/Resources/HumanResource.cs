@@ -15,10 +15,10 @@ public class HumanResource : MonoBehaviour {
     {
         Debug.Log("DELETE START AND UPDATE!!!!!!!!!!!!!!!");
     }
+
     void Update()
     {
-        Value = Number;
-        FieldText.text = Value.ToString() + " / " + Max;
+        FieldText.text = Number.ToString() + " / " + Max;
     }
     
     public static void add()
@@ -30,7 +30,6 @@ public class HumanResource : MonoBehaviour {
     public static void add(int Value)
     {
         Number += Value;
-        Max += Value;
     }
 
     public static void sub()
@@ -52,4 +51,11 @@ public class HumanResource : MonoBehaviour {
     {
         return Max;
     }
+
+    public static void setMax(int Value)
+    {
+        Max = Value;
+    }
+
+
 }

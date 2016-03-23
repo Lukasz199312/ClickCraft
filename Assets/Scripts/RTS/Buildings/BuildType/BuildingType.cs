@@ -10,6 +10,7 @@ public abstract class BuildingType : MonoBehaviour {
     public Building _Buildnig;
     public int MaxBuilding;
     public int MaxSizeEmployees;
+    public BasicProfil Profil;
 
     private string BuildTypeName = "";
     //private List<Upgrade> UpgradesList;

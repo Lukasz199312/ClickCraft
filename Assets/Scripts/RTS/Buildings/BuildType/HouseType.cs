@@ -7,12 +7,17 @@ public class HouseType : BuildingType {
 
 	// Use this for initialization
 	void Start () {
-	    
+        UpdateWokrerOnHouse();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
+        
 	}
+
+    public void UpdateWokrerOnHouse()
+    {
+        HumanResource.setMax( Builds.Count *  NumberPersonOnHuse);
+    }
 
 }

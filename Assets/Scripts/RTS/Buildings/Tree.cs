@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Tree : Building
+public class Tree : Building, I_ResourceBuildFunction
 {
     public Capacity Capacity;
 
@@ -10,6 +10,8 @@ public class Tree : Building
         IO_DataField.Add(new IO_Capacity() );
 
         Capacity = new Capacity(((TreeType)DefaultGrup).TreeCapacity, ResourceProduction.sprite);
+        Capacity.setMax(((TreeType)DefaultGrup).TreeCapacity);
+
         Employees.setMaxSize(DefaultGrup.MaxSizeEmployees);
 
         subject.Add(this);
@@ -50,4 +52,9 @@ public class Tree : Building
         return new TreeProduce();
     }
 
+
+    public Capacity getCapacity()
+    {
+        return Capacity;
+    }
 }

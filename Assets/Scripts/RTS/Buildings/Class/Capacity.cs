@@ -5,6 +5,7 @@ using UnityEngine;
 public class Capacity : I_Resource
 {
     private int _Capacity;
+    private int Max;
     private Sprite sprite;
     private float DropChance = 1;
 
@@ -48,5 +49,15 @@ public class Capacity : I_Resource
     public int get()
     {
         return _Capacity;
+    }
+
+    public void setMax(int Value)
+    {
+        Max = Value;
+    }
+
+    public int getMax()
+    {
+        return Max;
     }
 }

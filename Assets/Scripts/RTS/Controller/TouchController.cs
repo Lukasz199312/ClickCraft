@@ -105,7 +105,7 @@ public class TouchController : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(pos, Vector2.zero, 0);
         if (hit != null && hit.collider != null)
         {
-            //Debug.Log("I'm hitting " + hit.collider.name);
+           // Debug.Log("I'm hitting " + hit.collider.name);
             TouchedObject = hit.collider.gameObject;
             return hit.collider.gameObject;
         }
@@ -119,15 +119,16 @@ public class TouchController : MonoBehaviour
     private void DetectDoubleTouch()
     {
         if (TouchedObject == null) return;
+
         if (DisableDoubleTouch == true) return;
 
         if(FirstTapTime.AddMilliseconds(Delay) > DateTime.Now)
         {
             if(TouchedObject.gameObject.name == TapedObject.gameObject.name)
             {
-                TouchedObject.GetComponent<TouchedObject>().ShowGUI();
                 DisableDoubleTouch = true;
-
+                TouchedObject.GetComponent<TouchedObject>().TouchAction();
+                Debug.Log("FAST TEST");
             }
         }
         else

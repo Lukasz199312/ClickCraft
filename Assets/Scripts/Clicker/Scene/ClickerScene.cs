@@ -50,7 +50,7 @@ public abstract class ClickerScene : MonoBehaviour {
         button.onClick.RemoveAllListeners();
 
         gameObject.SetActive(false);
-        Build.GetComponent<TouchedObject>().HideGUI();
+        ((ShowGuiTouchAction)Build.GetComponent<TouchedObject>().Action).HideGUI();
     }
 
     public Vector3 GenerateNewPosition()

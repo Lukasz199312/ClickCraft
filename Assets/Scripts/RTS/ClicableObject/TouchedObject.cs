@@ -9,10 +9,11 @@ public class TouchedObject : MonoBehaviour {
     public BuilderManager Builder;
     public PlacingToGrid Placing;
     private BasicBuildActionsGUI Default;
+    public I_TouchaActions Action;
 
 	// Use this for initialization
 	void Start () {
-        Default = BuildingActionGUI;
+        InitializeAsMenu();
 	}
 	
 	// Update is called once per frame
@@ -20,30 +21,19 @@ public class TouchedObject : MonoBehaviour {
 	    
 	}
 
-    public void ShowGUI()
+    public void TouchAction()
     {
-        if (GetComponent<Building>().InConstruction.active == true) setContructionGUI();
-        else setNormalActionGui();
-
-        Default.gameObject.SetActive(true);
-        Default.setTouchedObject(this);
-
-        Default.ReloadData();
-        Default.HideShopMenu();
+        Action.DoAction();
     }
 
-    public void HideGUI()
+    public void InitializeAsMenu()
     {
-        Default.gameObject.SetActive(false);
+        Action = new ShowGuiTouchAction(Default, GetComponent<Building>(), this, BuildingActionGUI, ActionGUIConstruction);
     }
 
-    public void setContructionGUI()
+    public void InitializeAsCollectItem()
     {
-        Default = ActionGUIConstruction;
+        Action = new CollectProduceItem(GetComponent<Building>());
     }
 
-    public void setNormalActionGui()
-    {
-        Default = BuildingActionGUI;
-    }
 }

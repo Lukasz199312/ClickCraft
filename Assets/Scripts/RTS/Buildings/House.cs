@@ -18,6 +18,7 @@ public class House : Building {
     public override void DefaultInitialize()
     {
         HumanResource.add(((HouseType)DefaultGrup).NumberPersonOnHuse);
+        ((HouseType)DefaultGrup).UpdateWokrerOnHouse();
     }
 
 }

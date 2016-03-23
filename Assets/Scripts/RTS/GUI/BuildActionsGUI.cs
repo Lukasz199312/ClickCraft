@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class BuildActionsGUI : BasicBuildActionsGUI {
-
 
 	// Use this for initialization
 	void Start () {
@@ -11,7 +11,7 @@ public class BuildActionsGUI : BasicBuildActionsGUI {
 	
 	// Update is called once per frame
 	void Update () {
-	
+
 	}
 
     public override void InitializeDisplace()
@@ -42,7 +42,7 @@ public class BuildActionsGUI : BasicBuildActionsGUI {
 
     public override void InitializeExtends()
     {
-
+ 
     }
 
     public override void DisableExtends()
