@@ -71,4 +71,24 @@ public class EmployeeManager
         return Employees;
     }
 
+
+    public static void BackToOwnerAll(EmployeeManager Employees)
+    {
+
+        for(int i = Employees.getList().Count - 1; i >= 0; i--)
+        {
+            Employees.getList()[i].Share = false;
+
+            if (Employees.getList()[i].WorkPlace == null) continue;
+            Employees.getList()[i].WorkPlace.getList().Remove(Employees.getList()[i]);
+        }
+        
+    }
+
+    public static void KillAll(EmployeeManager Employees)
+    {
+        HumanResource.add(Employees.getList().Count);
+        Employees.getList().Clear();
+    }
+
 }

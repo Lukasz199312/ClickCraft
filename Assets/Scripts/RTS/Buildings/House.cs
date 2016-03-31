@@ -21,4 +21,9 @@ public class House : Building {
         ((HouseType)DefaultGrup).UpdateWokrerOnHouse();
     }
 
+    public override void OnDelete()
+    {
+        HumanResource.sub(((HouseType)DefaultGrup).NumberPersonOnHuse);
+        HumanResource.setMax(((HouseType)DefaultGrup).Builds.Count * ((HouseType)DefaultGrup).NumberPersonOnHuse);
+    }
 }

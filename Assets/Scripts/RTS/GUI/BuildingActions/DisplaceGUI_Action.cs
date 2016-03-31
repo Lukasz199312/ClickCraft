@@ -28,13 +28,19 @@ public class DisplaceGUI_Action : MonoBehaviour {
         Building BuildingObserve = objectgame.GetComponent<Building>();
         BuildingObserve.DefaultGrup.RemoveBuild(BuildingObserve);
         BuildingObserve.subject.Remove(BuildingObserve);
-        
+        BuildingObserve.OnDelete();
+
+
+        BuildingObserve.RemoveAllEmployees();
+
+        BuildingObserve.subject.Remove(BuildingObserve);
 
         PlacingToGrid place = objectgame.GetComponent<PlacingToGrid>();
         place.RelaseAll();
 
         IO_Basic.Delete(objectgame.name);
         objectgame.SetActive(false);
+
     }
 
     public static void DeleteObject(GameObject objectgame)
@@ -45,11 +51,16 @@ public class DisplaceGUI_Action : MonoBehaviour {
         Building BuildingObserve = objectgame.GetComponent<Building>();
         BuildingObserve.DefaultGrup.RemoveBuild(BuildingObserve);
         BuildingObserve.subject.Remove(BuildingObserve);
+        BuildingObserve.OnDelete();
+
+        BuildingObserve.RemoveAllEmployees();
 
         PlacingToGrid place = objectgame.GetComponent<PlacingToGrid>();
         place.RelaseAll();
 
         IO_Basic.Delete(objectgame.name);
         objectgame.SetActive(false);
+
     }
+
 }

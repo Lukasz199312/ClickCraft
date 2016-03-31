@@ -7,6 +7,7 @@ public class StandardActionsGUI : BasicBuildActionsGUI
 
     public Text Capacity;
     public Text Workers;
+    public Text BuildName;
     public Building Build;
 
     public EmployeeAction EmployeeGUI;
@@ -53,6 +54,7 @@ public class StandardActionsGUI : BasicBuildActionsGUI
         EmployeeGUI.gameObject.SetActive(true);
         EmployeeGUI.Initialize(_TouchedObject.GetComponent<Building>());
         Build = _TouchedObject.GetComponent<Building>();
+        BuildName.text = Build.BuildName;
     }
 
     public override void DisableExtends()

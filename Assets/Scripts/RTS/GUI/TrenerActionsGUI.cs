@@ -2,11 +2,13 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public class InfoActionsGUI : BasicBuildActionsGUI
+public class TrenerActionsGUI : BasicBuildActionsGUI
 {
+
     public Text Capacity;
-    public Building Build;
+    public Text Workers;
     public Text BuildName;
+    public Building Build;
 
     public EmployeeAction EmployeeGUI;
 
@@ -17,8 +19,7 @@ public class InfoActionsGUI : BasicBuildActionsGUI
 	
 	// Update is called once per frame
 	void Update () {
-        Capacity.text = "Capacity: " + ((I_ResourceBuildFunction)Build).getCapacity().get() + " / " 
-                                     + ((I_ResourceBuildFunction)Build).getCapacity().getMax();
+        Workers.text = "Workers: " + Build.Employees.getCount() + " / " + Build.Employees.getMaxSize();
 	}
 
     public override void InitializeDisplace()
@@ -43,19 +44,26 @@ public class InfoActionsGUI : BasicBuildActionsGUI
 
     public override void InitializeProfiler()
     {
-
+        Profiler.Initialize(_TouchedObject.GetComponent<Building>());
     }
 
 
     public override void InitializeExtends()
     {
+        EmployeeGUI.gameObject.SetActive(true);
+        EmployeeGUI.Initialize(_TouchedObject.GetComponent<Building>());
         Build = _TouchedObject.GetComponent<Building>();
         BuildName.text = Build.BuildName;
     }
 
     public override void DisableExtends()
     {
-
+        EmployeeGUI.gameObject.SetActive(false);
     }
 
+    public void Collect()
+    {
+        Build.ResourceProduction.add((int)Build.Build_Statistic.Capacity);
+        Build.Build_Statistic.Capacity = 0;
+    }
 }

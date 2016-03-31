@@ -30,6 +30,7 @@ public class Employee
 
     public static Employee IO_Create(EmployeeManager Owner, Building OwnerBuild)
     {
+        if (HumanResource.getCount() <= 0) return null;
         if (Owner.getCount() >= Owner.getMaxSize()) return null;
         else
         {
@@ -56,6 +57,16 @@ public class Employee
     {
         employee.Share = false;
         employee.WorkPlace.Remove(employee);
+    }
+
+    public static void RemoveAll(EmployeeManager WorkPlace)
+    {
+        if (WorkPlace.getCount() <= 0) return;
+
+        for(int i = 1; i < WorkPlace.getCount(); i++)
+        {
+            BackToOwner(WorkPlace.getList()[0]);
+        }
     }
 
 }

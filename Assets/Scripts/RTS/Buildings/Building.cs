@@ -18,6 +18,7 @@ public abstract class Building : Observe {
     public BuildTime InConstruction =  new BuildTime();
     public EmployeeManager Employees = new EmployeeManager();
     public bool InCollectMode = false;
+    public bool isWorkBuild = false;
 
     protected List<I_DataField> IO_DataField = new List<I_DataField>();
 
@@ -81,8 +82,19 @@ public abstract class Building : Observe {
         }
     }
 
+    public void RemoveAllEmployees()
+    {
+        EmployeeManager.BackToOwnerAll(Employees);
+        if (isWorkBuild == false) EmployeeManager.KillAll(Employees);
+    }
+
 
     public virtual void DefaultInitialize()
+    {
+
+    }
+
+    public virtual void OnDelete()
     {
 
     }

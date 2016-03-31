@@ -22,6 +22,8 @@ public class TreeProduce : I_Produce
         {
             if (IsMax(emplo.OwnerBuild) != true) ProduceStaff(building, emplo.OwnerBuild);
             else StopProduce(emplo.OwnerBuild);
+
+            if (building.gameObject.activeInHierarchy == false) break;
         }
     }
 
@@ -48,7 +50,15 @@ public class TreeProduce : I_Produce
         float result = (((GlobalTimer)WorkBuild.subject).RefreshTime / Lumber._AutoStatistic.Speed) * Lumber._AutoStatistic.HitPoints;
         OwnerBuild.Build_Statistic.Capacity += result;
         ((Tree)WorkBuild).Capacity.add((int)result);
+         IsCapacityEmpty(WorkBuild);
 
+    }
+
+    private void IsCapacityEmpty(Building WorkBuild)
+    {
+        if (((Tree)WorkBuild).getCapacity().get() > 0) return;
+        DisplaceGUI_Action.DeleteObject(WorkBuild.gameObject);
+        //WorkBuild.gameObject.SetActive(false);
     }
 
     public void setTimer(DisplayTimer Timer)

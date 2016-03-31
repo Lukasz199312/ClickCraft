@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Trener : BasicProfil {
+public class Training_GroundType : BuildingType
+{
 
 	// Use this for initialization
 	void Start () {
