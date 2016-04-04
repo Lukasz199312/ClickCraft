@@ -30,7 +30,7 @@ public class Employee
 
     public static Employee IO_Create(EmployeeManager Owner, Building OwnerBuild)
     {
-        if (HumanResource.getCount() <= 0) return null;
+       // if (HumanResource.getCount() <= 0) return null;
         if (Owner.getCount() >= Owner.getMaxSize()) return null;
         else
         {
@@ -41,6 +41,7 @@ public class Employee
             return emplo;
         }
     }
+
 
     public static void Kill(Employee employee)
     {

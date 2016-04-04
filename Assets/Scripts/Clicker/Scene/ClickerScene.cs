@@ -8,17 +8,21 @@ public abstract class ClickerScene : MonoBehaviour {
     public BasicProfil Profil;
     public Resource[] _Resources;
     public Button button;
+    public SceneView View;
 
     private float ScreenWidth;
     private float ScreenHeight;
 
     protected Building Build;
     protected Vector3 OldPosition;
+    protected BasicView basicView = new BuildViewScene();
 
 	// Use this for initialization
 	void Start () {
         ScreenWidth = Screen.width;
         ScreenHeight = Screen.height;
+
+        
 
 	}
 	
@@ -29,6 +33,7 @@ public abstract class ClickerScene : MonoBehaviour {
 
     public void goToScene()
     {
+        InitializeSceneView(basicView);
         gameObject.SetActive(true);
 
         OldPosition = new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y, Camera.main.transform.position.z);
@@ -59,6 +64,11 @@ public abstract class ClickerScene : MonoBehaviour {
         float y = Random.Range((int)(ScreenHeight * 0.15f), ScreenHeight - (int)(ScreenHeight * 0.20f));
 
         return new Vector3(x, y, this.transform.position.z + 50);
+    }
+
+    public void InitializeSceneView(BasicView _BasicView)
+    {
+        View.Initialize(_BasicView, Build);
     }
 
     public abstract void ClickAction(int value , I_Resource res);

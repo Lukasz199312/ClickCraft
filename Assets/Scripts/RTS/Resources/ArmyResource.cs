@@ -8,7 +8,7 @@ public class ArmyResource : Resource
 
 	// Use this for initialization
 	void Start () {
-        DisplaceText.text = Value.Value.ToString();
+        UpdateArmyStatus();
 	}
 	
 	// Update is called once per frame
@@ -16,4 +16,8 @@ public class ArmyResource : Resource
 	
 	}
 
+    public void UpdateArmyStatus()
+    {
+        DisplaceText.text = Value.Value.ToString();
+    }
 }

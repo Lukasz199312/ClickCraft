@@ -9,6 +9,7 @@ public class TrenerScene : ClickerScene
 	// Update is called once per frame
 	void Update () {
         Timer.TimetText.text = Build.ResourceProduction.get().ToString();
+        
 
 	}
 
@@ -63,6 +64,7 @@ public class TrenerScene : ClickerScene
     public override void BackToMap()
     {
        // button.onClick.Invoke();
+        ((ArmyResource)Build.ResourceProduction).UpdateArmyStatus();
         base.BackToMap();
         
     }

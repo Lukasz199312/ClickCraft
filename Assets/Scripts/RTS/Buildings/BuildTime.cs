@@ -7,6 +7,7 @@ public class BuildTime : I_Resource {
 
     public DateTime Date = DateTime.Now;
     public TimeSpan span;
+    public TimeSpan Oryginalspan;
 
     public int Seconds;
     public int Minutes;
@@ -17,6 +18,7 @@ public class BuildTime : I_Resource {
     public bool active;
 
     private Sprite sprite;
+
 
     public void Reload()
     {
@@ -43,6 +45,7 @@ public class BuildTime : I_Resource {
         Date2 = Date2.AddDays(Days);
 
         span = Date2 - Date;
+        Oryginalspan = new TimeSpan(span.Ticks);
 
         Debug.Log("DAte1: " + Date);
         Debug.Log("DAte2: " + Date2);
@@ -99,5 +102,24 @@ public class BuildTime : I_Resource {
     public int get()
     {
         throw new NotImplementedException();
+    }
+
+    public double getTotalSecondSub()
+    {
+        return (Oryginalspan - span).TotalSeconds;
+    }
+    
+    public void initializeoryginal()
+    {
+        Date = DateTime.Now;
+        DateTime Date2 = DateTime.Now; ;
+
+        Date2 = Date2.AddSeconds(Seconds);
+        Date2 = Date2.AddMinutes(Minutes);
+        Date2 = Date2.AddHours(Hours);
+        Date2 = Date2.AddDays(Days);
+
+        Oryginalspan = Date2 - Date;
+
     }
 }

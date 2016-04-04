@@ -9,6 +9,8 @@ public class BuildScene : ClickerScene {
 	// Update is called once per frame
 	void Update () {
 
+        View.Fill();
+
         Timer.setTime(Build.InConstruction.span);
         if (Build.InConstruction.active == false)
         {

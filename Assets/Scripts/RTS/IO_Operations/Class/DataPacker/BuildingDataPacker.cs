@@ -99,6 +99,7 @@ public class BuildingDataPacker : DataPacker {
         if (ChainData[4].Length > 1)
         {
             _Building._Building.InConstruction.span = TimeSpan.Parse(ChainData[4]);
+            _Building._Building.InConstruction.initializeoryginal();
             _Building._Building.InConstruction.active = true;
         }
         else _Building._Building.InConstruction.active = false;
