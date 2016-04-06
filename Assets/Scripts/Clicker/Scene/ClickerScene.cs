@@ -16,6 +16,7 @@ public abstract class ClickerScene : MonoBehaviour {
     protected Building Build;
     protected Vector3 OldPosition;
     protected BasicView basicView = new BuildViewScene();
+    protected float SaveCameraSize;
 
 	// Use this for initialization
 	void Start () {
@@ -40,6 +41,9 @@ public abstract class ClickerScene : MonoBehaviour {
         Camera.main.transform.position = new Vector3(transform.position.x, transform.position.y, Camera.main.transform.position.z);
         Camera.main.GetComponent<ClickController>().Scene = this;
 
+        SaveCameraSize = Camera.main.orthographicSize;
+        Camera.main.orthographicSize = 5f;
+
         InitializeResource();
 
         InitializeObjectPool(Profil.Resources[0].getSprite());
@@ -56,6 +60,7 @@ public abstract class ClickerScene : MonoBehaviour {
 
         gameObject.SetActive(false);
         ((ShowGuiTouchAction)Build.GetComponent<TouchedObject>().Action).HideGUI();
+        Camera.main.orthographicSize = SaveCameraSize;
     }
 
     public Vector3 GenerateNewPosition()

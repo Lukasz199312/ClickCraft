@@ -31,6 +31,9 @@ public class SceneView : MonoBehaviour {
         ShadowSprite.sprite = Build.gameObject.GetComponent<SpriteRenderer>().sprite;
         OryginalSprite.sprite = ShadowSprite.sprite;
 
+        ShadowSprite.transform.localScale = new Vector3(Build.transform.localScale.x, Build.transform.localScale.y, Build.transform.localScale.z);
+        OryginalSprite.transform.localScale = new Vector3(Build.transform.localScale.x, Build.transform.localScale.y, Build.transform.localScale.z);
+
         material = OryginalSprite.material;
 
         _View = View;
