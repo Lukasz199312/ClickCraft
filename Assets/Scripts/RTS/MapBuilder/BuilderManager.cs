@@ -25,6 +25,7 @@ public class BuilderManager : MonoBehaviour {
     private bool isTransfered = false;
     private SpriteRenderer TMPsprite;
     private PlacingToGrid FirstObjectPosition;
+    private GuiBuyBuilding BuyGui;
 
 	// Use this for initialization
 	void Start () {
@@ -124,8 +125,9 @@ public class BuilderManager : MonoBehaviour {
         else BuildObjectSprite.color = NormalColor;
     }
 
-    public void Build(ItemShop item)
+    public void Build(ItemShop item, GuiBuyBuilding BuyGui)
     {
+        this.BuyGui = BuyGui;
         if (BuildObjectPlacingToGrid == null)
         {
             BuildObjectPlacingToGrid = BuildingSkeleton;
@@ -258,6 +260,9 @@ public class BuilderManager : MonoBehaviour {
         BuildObjectPlacingToGrid = null;
         BuildingSkeleton.RelaseAll();
         Controller.DisableDoubleTouch = false;
+
+        if(BuyGui != null) BuyGui.Finalize();
+        BuyGui = null;
     }
 
     public void MirrorRescale()
@@ -279,5 +284,6 @@ public class BuilderManager : MonoBehaviour {
         isTransfered = false;
 
         Controller.DisableDoubleTouch = false;
+        BuyGui = null;
     }
 }

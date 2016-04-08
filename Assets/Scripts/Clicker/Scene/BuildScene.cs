@@ -5,6 +5,7 @@ using System.Collections;
 public class BuildScene : ClickerScene {
 
     public DisplayTimer Timer;
+    public SpriteRenderer Sprite;
 
 	// Update is called once per frame
 	void Update () {
@@ -70,6 +71,8 @@ public class BuildScene : ClickerScene {
     {
         Profil.Resources = new I_Resource[1];
         Profil.Resources[0] = Build.InConstruction;
+
+        Profil.Resources[0].setSprite(Sprite.sprite);
     }
 
 }

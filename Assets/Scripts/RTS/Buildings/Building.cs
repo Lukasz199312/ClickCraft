@@ -7,6 +7,7 @@ using System.Collections.Generic;
 /// </summary>
 public abstract class Building : Observe {
 
+    public Text Description;
     public BuildingInformation Building_Information;
     public BuildingStatistic Build_Statistic;
     public Resource ResourceProduction;

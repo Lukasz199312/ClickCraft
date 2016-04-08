@@ -15,9 +15,9 @@ public class BuildViewScene : BasicView {
 
     public float FillSprite(Building build)
     {
-        Debug.Log("Oryginal: " + (float)(build.InConstruction.Oryginalspan.TotalSeconds));
-        Debug.Log("Sub: " + build.InConstruction.getTotalSecondSub());
-        Debug.Log("TIME: " + (float)(build.InConstruction.getTotalSecondSub() / build.InConstruction.Oryginalspan.TotalSeconds));
+        //Debug.Log("Oryginal: " + (float)(build.InConstruction.Oryginalspan.TotalSeconds));
+        //Debug.Log("Sub: " + build.InConstruction.getTotalSecondSub());
+        //Debug.Log("TIME: " + (float)(build.InConstruction.getTotalSecondSub() / build.InConstruction.Oryginalspan.TotalSeconds));
         return (float)(build.InConstruction.getTotalSecondSub() / build.InConstruction.Oryginalspan.TotalSeconds);
     }
 }

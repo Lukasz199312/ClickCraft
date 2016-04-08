@@ -7,6 +7,7 @@ public class House : Building {
     {
         subject.Add(this);
         if (DefaultGrup.name != "House") return;
+
        
     }
 	
