@@ -4,7 +4,7 @@ using System.Collections;
 public class ClickController : MonoBehaviour {
 
     public ClickerScene Scene;
- 
+    public Randomness GeneratorRand;
 
 	// Use this for initialization
 	void Start () {
@@ -16,14 +16,20 @@ public class ClickController : MonoBehaviour {
 	    
         foreach(Touch touch in Input.touches)
         {
-            PhaseAction(touch);
+            if(touch.phase == TouchPhase.Began)
+             PhaseAction(touch);
         }
 	}
 
-
     private void PhaseAction(Touch touch)
     {
-        Randomness GeneratorRand = new Randomness();
+       
         GeneratorRand.SceneGenerateResourceValue(Scene, touch);
+    }
+
+    public void Initialize(I_SceneRandGenerator SceneRand)
+    {
+        GeneratorRand = new Randomness();
+        GeneratorRand.GenerateScene = SceneRand;
     }
 }

@@ -7,6 +7,7 @@ public enum Format
     STRING,
     BUILDING_GROUP,
     BUILDING,
+    PROFIL,
 
 
 };
@@ -45,6 +46,8 @@ public class IO_Format : MonoBehaviour {
                 return new BuildingGroupDataPacker().Pack(Data);
             case Format.BUILDING:
                 return new BuildingDataPacker().Pack(Data);
+            case Format.PROFIL:
+                return new ProfilDataPacker().Pack(Data);
 
             default:
                 Debug.LogError("Not Know Value");
@@ -80,6 +83,11 @@ public class IO_Format : MonoBehaviour {
 
             case Format.BUILDING:
                 new BuildingDataPacker().Unpack(_Data, Data);
+                return true;
+                break;
+
+            case Format.PROFIL:
+                new ProfilDataPacker().Unpack(_Data, Data);
                 return true;
                 break;
 

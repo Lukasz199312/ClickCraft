@@ -10,6 +10,8 @@ public class ClickerStatistic {
     public float CriticalChance;
     public float CriticalBonus;
 
+    public float BonusDropChance;
+
     public int DefaultClick;
     public int ClickCric;
 
@@ -22,6 +24,8 @@ public class ClickerStatistic {
 
         tmpClicker.CriticalChance = copyObject.CriticalChance;
         tmpClicker.CriticalBonus = copyObject.CriticalBonus;
+
+        tmpClicker.BonusDropChance = copyObject.BonusDropChance;
 
         tmpClicker.DefaultClick = copyObject.DefaultClick;
         tmpClicker.ClickCric = copyObject.ClickCric;

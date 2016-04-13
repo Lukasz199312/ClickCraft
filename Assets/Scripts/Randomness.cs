@@ -3,7 +3,9 @@ using System.Collections;
 
 public class Randomness {
 
-    public bool Generate(float PercentChance)
+
+    public I_SceneRandGenerator GenerateScene;
+    public static bool Generate(float PercentChance)
     {
         float result = Random.value;
 
@@ -12,7 +14,12 @@ public class Randomness {
     }
 
 
-    public void SceneGenerateResourceValue(ClickerScene Scene, Touch touch)
+     public void SceneGenerateResourceValue(ClickerScene Scene, Touch touch)
+    {
+        GenerateScene.Generatre(Scene);
+    }
+
+    public void _SceneGenerateResourceValue(ClickerScene Scene, Touch touch)
     {
         if (touch.phase == TouchPhase.Began)
         {

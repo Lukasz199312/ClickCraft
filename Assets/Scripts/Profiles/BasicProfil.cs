@@ -7,7 +7,10 @@ public abstract class BasicProfil : MonoBehaviour {
     
     [System.NonSerialized]
     public I_Resource[] Resources;
+    public I_Resource[] SpecialResources;
     public Tools Tool;
+
+    public ProfileExperince exp;
 
     public ClickerStatistic _ClickerStatistic;
     public AutoStatistic _AutoStatistic;

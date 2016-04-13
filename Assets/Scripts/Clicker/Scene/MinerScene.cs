@@ -4,10 +4,20 @@ using System.Collections;
 
 public class MinerScene : ClickerScene
 {
+    public ExperinceGUI ExperinceBar;
+
+    void Start()
+    {
+        ScreenWidth = Screen.width;
+        ScreenHeight = Screen.height;
+
+        ExperinceBar.Update(Profil.exp.Experince, Profil.exp.NextLevelExperince, Profil.exp.Level);
+
+    }
 
 	// Update is called once per frame
 	void Update () {
-        
+       
 	}
 
     public override void ClickAction(int value, I_Resource res)
@@ -19,6 +29,7 @@ public class MinerScene : ClickerScene
         res.add(value);
 
         ObjectPooling.gameObject.SetActive(true);
+        AddExperince(1);
     }
 
     public override void ClickActionSpecial(int value, Sprite sprite, I_Resource res)
@@ -31,6 +42,7 @@ public class MinerScene : ClickerScene
         res.add(value);
         
         ObjectPooling.gameObject.SetActive(true);
+        AddExperince(1);
     }
 
     public override void ClickActionCric(int value, Sprite sprite, I_Resource res)
@@ -43,6 +55,7 @@ public class MinerScene : ClickerScene
         res.add(value);
 
         ObjectPooling.gameObject.SetActive(true);
+        AddExperince(1);
     }
 
     public override void InitializeObjectPool(Sprite sprite)
@@ -58,4 +71,15 @@ public class MinerScene : ClickerScene
         }
     }
 
+    public override void BackToMap()
+    {
+        base.BackToMap();
+        ExperinceBar.gameObject.SetActive(false);
+    }
+
+    private void AddExperince(float exp)
+    {
+        Profil.exp.addExperince(exp);
+        ExperinceBar.Update(Profil.exp.Experince, Profil.exp.NextLevelExperince, Profil.exp.Level);
+    }
 }
